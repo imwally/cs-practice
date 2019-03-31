@@ -24,23 +24,29 @@ func hash(s string) int {
 	return sum % ARRAYSIZE
 }
 
-func (t *Table) Insert(s string) int {
+func (t *Table) Insert(s string) {
 	h := hash(s)
 	r := Record{h, s, nil}
 
 	if t.Storage[h] == nil {
 		t.Storage[h] = &r
-		return h
+	} else {
+		var node *Record
+		for node = t.Storage[h]; node.Next != nil; node = node.Next {
+		}
+		node.Next = &r
 	}
-
-	return h
 }
 
 func main() {
 	t := new(Table)
 
-	key := t.Insert("abcdef")
+	t.Insert("abcdef")
+	t.Insert("abcdef")
+	t.Insert("abcdef")
 
-	fmt.Println(key)
+	key := hash("abcdef")
 	fmt.Println(t.Storage[key])
+	fmt.Println(t.Storage[key].Next)
+	fmt.Println(t.Storage[key].Next.Next)
 }
