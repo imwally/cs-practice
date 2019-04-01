@@ -2,10 +2,10 @@ package main
 
 import "fmt"
 
-const ARRAYSIZE int = 2096
+const ARRAYSIZE int = 16
 
 type Record struct {
-	Key   int
+	Key   string
 	Value string
 	Next  *Record
 }
@@ -24,29 +24,59 @@ func hash(s string) int {
 	return sum % ARRAYSIZE
 }
 
-func (t *Table) Insert(s string) {
-	h := hash(s)
-	r := Record{h, s, nil}
+func (t *Table) Insert(key, s string) {
+	h := hash(key)
+	record := &Record{key, s, nil}
 
 	if t.Storage[h] == nil {
-		t.Storage[h] = &r
-	} else {
-		var node *Record
-		for node = t.Storage[h]; node.Next != nil; node = node.Next {
-		}
-		node.Next = &r
+		t.Storage[h] = record
+		return
 	}
+
+	var r *Record
+	for r = t.Storage[h]; r.Next != nil; r = r.Next {
+	}
+
+	r.Next = record
+}
+
+func (t *Table) Get(key string) string {
+	h := hash(key)
+
+	if t.Storage[h] == nil {
+		return ""
+	}
+
+	var value string
+	if t.Storage[h].Key == key {
+		value = t.Storage[h].Value
+		return value
+	}
+
+	for r := t.Storage[h]; r != nil; r = r.Next {
+		if r.Key == key {
+			value = r.Value
+		}
+	}
+
+	return value
 }
 
 func main() {
 	t := new(Table)
 
-	t.Insert("abcdef")
-	t.Insert("abcdef")
-	t.Insert("abcdef")
+	t.Insert("wally", "Wally Jones")
+	t.Insert("test", "This is a test")
+	t.Insert("hello", "Hello, World!")
+	t.Insert("tea", "Matcha")
+	t.Insert("coffee", "Black")
 
-	key := hash("abcdef")
-	fmt.Println(t.Storage[key])
-	fmt.Println(t.Storage[key].Next)
-	fmt.Println(t.Storage[key].Next.Next)
+	fmt.Println(t.Get("wally"))
+	fmt.Println(t.Get("test"))
+	fmt.Println(t.Get("hello"))
+	fmt.Println(t.Get("tea"))
+	fmt.Println(t.Get("coffee"))
+	fmt.Println(t.Get("null"))
+
+	fmt.Println(t.Storage)
 }
