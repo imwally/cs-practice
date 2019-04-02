@@ -48,11 +48,6 @@ func (t *Table) Get(key string) string {
 	}
 
 	var value string
-	if t.Storage[h].Key == key {
-		value = t.Storage[h].Value
-		return value
-	}
-
 	for r := t.Storage[h]; r != nil; r = r.Next {
 		if r.Key == key {
 			value = r.Value
