@@ -17,8 +17,7 @@ type Table struct {
 func hash(s string) int {
 	sum := 0
 	for i, c := range s {
-		sum += int(c)
-		sum *= i
+		sum += int(c) * i
 	}
 
 	return sum % ARRAYSIZE
@@ -28,27 +27,27 @@ func (t *Table) Insert(key, s string) {
 	h := hash(key)
 	record := &Record{key, s, nil}
 
-	if t.Storage[h] == nil {
-		t.Storage[h] = record
-	} else {
+	if t.Storage[h] != nil {
 		var r *Record
 		for r = t.Storage[h]; r.Next != nil; r = r.Next {
 		}
 		r.Next = record
+
+	} else {
+		t.Storage[h] = record
 	}
 }
 
 func (t *Table) Get(key string) string {
 	h := hash(key)
 
-	var value string
 	for r := t.Storage[h]; r != nil; r = r.Next {
 		if r.Key == key {
-			value = r.Value
+			return r.Value
 		}
 	}
 
-	return value
+	return ""
 }
 
 func main() {
