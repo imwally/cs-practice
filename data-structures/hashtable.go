@@ -30,22 +30,16 @@ func (t *Table) Insert(key, s string) {
 
 	if t.Storage[h] == nil {
 		t.Storage[h] = record
-		return
+	} else {
+		var r *Record
+		for r = t.Storage[h]; r.Next != nil; r = r.Next {
+		}
+		r.Next = record
 	}
-
-	var r *Record
-	for r = t.Storage[h]; r.Next != nil; r = r.Next {
-	}
-
-	r.Next = record
 }
 
 func (t *Table) Get(key string) string {
 	h := hash(key)
-
-	if t.Storage[h] == nil {
-		return ""
-	}
 
 	var value string
 	for r := t.Storage[h]; r != nil; r = r.Next {
