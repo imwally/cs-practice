@@ -27,15 +27,14 @@ func (t *Table) Insert(key, s string) {
 	h := hash(key)
 	record := &Record{key, s, nil}
 
-	if t.Storage[h] != nil {
-		var r *Record
-		for r = t.Storage[h]; r.Next != nil; r = r.Next {
+	for r := t.Storage[h]; r != nil; r = r.Next {
+		if r.Next == nil {
+			r.Next = record
+			return
 		}
-		r.Next = record
-
-	} else {
-		t.Storage[h] = record
 	}
+
+	t.Storage[h] = record
 }
 
 func (t *Table) Get(key string) string {
