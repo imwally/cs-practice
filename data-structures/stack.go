@@ -11,6 +11,11 @@ func (s *Stack) Push(n int) {
 }
 
 func (s *Stack) Pop() int {
+	// Not sure I really like this
+	if len(s.Storage) < 1 {
+		return 0
+	}
+
 	last := len(s.Storage) - 1
 	popped := s.Storage[last]
 	s.Storage = s.Storage[:last]
@@ -24,6 +29,8 @@ func main() {
 	s.Push(2)
 	s.Push(3)
 
+	fmt.Println(s)
+	fmt.Println(s.Pop())
 	fmt.Println(s)
 	fmt.Println(s.Pop())
 	fmt.Println(s)
