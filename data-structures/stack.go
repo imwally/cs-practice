@@ -11,9 +11,8 @@ func (s *Stack) Push(n int) {
 }
 
 func (s *Stack) Pop() int {
-	// Not sure I really like this
 	if len(s.Storage) < 1 {
-		return 0
+		panic("stack underflow: out of bounds")
 	}
 
 	last := len(s.Storage) - 1
