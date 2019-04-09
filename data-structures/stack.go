@@ -12,7 +12,7 @@ func (s *Stack) Push(n int) {
 
 func (s *Stack) Pop() int {
 	if len(s.Storage) < 1 {
-		panic("stack underflow: out of bounds")
+		panic("stack underflow")
 	}
 
 	last := len(s.Storage) - 1
