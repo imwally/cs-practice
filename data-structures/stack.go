@@ -29,8 +29,11 @@ func (s *Stack) Peek() int {
 
 func main() {
 	s := new(Stack)
+	fmt.Println("Push: 1")
 	s.Push(1)
+	fmt.Println("Push: 2")
 	s.Push(2)
+	fmt.Println("Push: 3")
 	s.Push(3)
 
 	fmt.Println(s)
