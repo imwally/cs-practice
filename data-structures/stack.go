@@ -23,6 +23,10 @@ func (s *Stack) Pop() int {
 }
 
 func (s *Stack) Peek() int {
+	if len(s.Storage) < 1 {
+		panic("stack underflow")
+	}
+
 	last := len(s.Storage) - 1
 	return s.Storage[last]
 }
@@ -42,4 +46,6 @@ func main() {
 	fmt.Println("Peek:", s.Peek())
 	fmt.Println("Pop:", s.Pop())
 	fmt.Println(s)
+	fmt.Println("Pop:", s.Pop())
+	fmt.Println("Peek:", s.Peek())
 }
