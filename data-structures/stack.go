@@ -31,6 +31,10 @@ func (s *Stack) Peek() int {
 	return s.Storage[last]
 }
 
+func (s *Stack) Length() int {
+	return len(s.Storage)
+}
+
 func main() {
 	s := new(Stack)
 	fmt.Println("Push: 1")
@@ -41,10 +45,12 @@ func main() {
 	s.Push(3)
 
 	fmt.Println(s)
+	fmt.Println("Length:", s.Length())
 	fmt.Println("Pop:", s.Pop())
 	fmt.Println(s)
 	fmt.Println("Peek:", s.Peek())
 	fmt.Println("Pop:", s.Pop())
+	fmt.Println("Length:", s.Length())
 	fmt.Println(s)
 	fmt.Println("Pop:", s.Pop())
 	fmt.Println("Peek:", s.Peek())
