@@ -35,6 +35,15 @@ func (s *Stack) Length() int {
 	return len(s.Storage)
 }
 
+func (s Stack) String() string {
+	var str string
+	for i := s.Length() - 1; i >= 0; i-- {
+		str += fmt.Sprintf("%d, ", s.Storage[i])
+	}
+
+	return str[:len(str)-2]
+}
+
 func main() {
 	s := new(Stack)
 	fmt.Println("Push: 1")
@@ -44,14 +53,14 @@ func main() {
 	fmt.Println("Push: 3")
 	s.Push(3)
 
-	fmt.Println(s)
+	fmt.Println("Stack:", s)
 	fmt.Println("Length:", s.Length())
 	fmt.Println("Pop:", s.Pop())
-	fmt.Println(s)
+	fmt.Println("Stack:", s)
 	fmt.Println("Peek:", s.Peek())
 	fmt.Println("Pop:", s.Pop())
 	fmt.Println("Length:", s.Length())
-	fmt.Println(s)
+	fmt.Println("Stack:", s)
 	fmt.Println("Pop:", s.Pop())
 	fmt.Println("Peek:", s.Peek())
 }
