@@ -36,6 +36,10 @@ func (s *Stack) Length() int {
 }
 
 func (s Stack) String() string {
+	if len(s.Storage) < 1 {
+		return ""
+	}
+
 	var str string
 	for i := s.Length() - 1; i >= 0; i-- {
 		str += fmt.Sprintf("%d, ", s.Storage[i])
@@ -62,5 +66,6 @@ func main() {
 	fmt.Println("Length:", s.Length())
 	fmt.Println("Stack:", s)
 	fmt.Println("Pop:", s.Pop())
+	fmt.Println("Stack:", s)
 	fmt.Println("Peek:", s.Peek())
 }
