@@ -6,6 +6,10 @@ type Stack struct {
 	Storage []int
 }
 
+func (s *Stack) Length() int {
+	return len(s.Storage)
+}
+
 func (s *Stack) Push(n int) {
 	s.Storage = append(s.Storage, n)
 }
@@ -23,7 +27,7 @@ func (s *Stack) Pop() int {
 }
 
 func (s *Stack) Peek() int {
-	if len(s.Storage) < 1 {
+	if s.Length() < 1 {
 		panic("stack underflow")
 	}
 
@@ -31,12 +35,8 @@ func (s *Stack) Peek() int {
 	return s.Storage[last]
 }
 
-func (s *Stack) Length() int {
-	return len(s.Storage)
-}
-
 func (s Stack) String() string {
-	if len(s.Storage) < 1 {
+	if s.Length() < 1 {
 		return ""
 	}
 
