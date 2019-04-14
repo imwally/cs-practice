@@ -45,6 +45,7 @@ func (s Stack) String() string {
 		str += fmt.Sprintf("%d, ", s.Storage[i])
 	}
 
+	// Everything but the last comma and space
 	return str[:len(str)-2]
 }
 
