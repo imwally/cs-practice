@@ -17,13 +17,28 @@ func (q *Queue) Dequeue() interface{} {
 	return first
 }
 
+func (q Queue) String() string {
+	if len(q.Storage) < 1 {
+		return ""
+	}
+
+	var str string
+	for i := len(q.Storage) - 1; i >= 0; i-- {
+		str += fmt.Sprintf("%v, ", q.Storage[i])
+	}
+
+	return str[:len(str)-2]
+}
+
 func main() {
 	q := new(Queue)
 	q.Enqueue(1)
+	fmt.Println(q)
 	q.Enqueue(2)
+	fmt.Println(q)
 	q.Enqueue(3)
+	fmt.Println(q)
 	q.Enqueue("Four")
-
 	fmt.Println(q)
 
 	fmt.Println(q.Dequeue())
