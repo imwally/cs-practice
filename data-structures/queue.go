@@ -6,12 +6,16 @@ type Queue struct {
 	Storage []interface{}
 }
 
+func (q *Queue) Length() int {
+	return len(q.Storage)
+}
+
 func (q *Queue) Enqueue(v interface{}) {
 	q.Storage = append(q.Storage, v)
 }
 
 func (q *Queue) Dequeue() interface{} {
-	if len(q.Storage) < 1 {
+	if q.Length() < 1 {
 		return nil
 	}
 
@@ -22,7 +26,7 @@ func (q *Queue) Dequeue() interface{} {
 }
 
 func (q Queue) String() string {
-	if len(q.Storage) < 1 {
+	if q.Length() < 1 {
 		return ""
 	}
 
