@@ -11,6 +11,10 @@ func (q *Queue) Enqueue(v interface{}) {
 }
 
 func (q *Queue) Dequeue() interface{} {
+	if len(q.Storage) < 1 {
+		return nil
+	}
+
 	first := q.Storage[0]
 	q.Storage = q.Storage[1:]
 
@@ -49,4 +53,6 @@ func main() {
 	fmt.Println(q)
 	fmt.Println(q.Dequeue())
 	fmt.Println(q)
+	fmt.Println(q.Dequeue())
+	fmt.Println(q.Dequeue())
 }
