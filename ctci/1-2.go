@@ -25,14 +25,15 @@ func Permutation(s1, s2 string) bool {
 }
 
 func main() {
-
 	s1 := "abcdef"
 	s2 := "fedcba"
 	s3 := "foobar"
 	s4 := "barfoo"
+	s5 := "barfooo"
 
-	fmt.Println(Permutation(s1, s2))
-	fmt.Println(Permutation(s2, s3))
-	fmt.Println(Permutation(s1, s3))
-	fmt.Println(Permutation(s3, s4))
+	fmt.Printf("%s, %s: %t\n", s1, s2, Permutation(s1, s2))
+	fmt.Printf("%s, %s: %t\n", s2, s3, Permutation(s2, s3))
+	fmt.Printf("%s, %s: %t\n", s1, s3, Permutation(s1, s3))
+	fmt.Printf("%s, %s: %t\n", s3, s4, Permutation(s3, s4))
+	fmt.Printf("%s, %s: %t\n", s4, s5, Permutation(s4, s5))
 }
