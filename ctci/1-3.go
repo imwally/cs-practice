@@ -12,9 +12,7 @@ func URLify(s string) string {
 	for i := 0; i < len(runes)-1; i++ {
 		if runes[i] == ' ' {
 			copy(runes[i+3:], runes[i+1:])
-			runes[i] = '%'
-			runes[i+1] = '2'
-			runes[i+2] = '0'
+			copy(runes[i:i+3], []rune("%20"))
 			i = i + 2
 		}
 	}
@@ -24,7 +22,9 @@ func URLify(s string) string {
 
 func main() {
 	str1 := "Hello World  "
-	str2 := "A much longer test string with a lot more spaces                        "
+	str2 := "A much longer test string with a lot more spaces                   "
+	str3 := "One more for good measure        "
 	fmt.Println(URLify(str1))
 	fmt.Println(URLify(str2))
+	fmt.Println(URLify(str3))
 }
