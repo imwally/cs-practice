@@ -11,6 +11,8 @@ func URLify(s string) string {
 	runes := []rune(s)
 	for i := 0; i < len(runes)-1; i++ {
 		if runes[i] == ' ' {
+			// Shift everything after the space ahead by
+			// two characters leaving enough room for "%20".
 			copy(runes[i+3:], runes[i+1:])
 			copy(runes[i:i+3], []rune("%20"))
 			i = i + 2
