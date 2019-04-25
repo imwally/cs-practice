@@ -37,7 +37,15 @@ func TestCompressedString(t *testing.T) {
 	ans1 := "a2b1c5a3"
 	compressed1 := CompressString(str1)
 
+	str2 := "abcd"
+	ans2 := "abcd"
+	compressed2 := CompressString(str2)
+
 	if compressed1 != ans1 {
 		t.Errorf("%s did not compress to %s, got %s instead", str1, ans1, compressed1)
+	}
+
+	if compressed2 != ans2 {
+		t.Errorf("%s did not compress to %s, got %s instead", str2, ans2, compressed2)
 	}
 }
