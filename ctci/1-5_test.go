@@ -19,6 +19,8 @@ func CompressString(s string) string {
 	for i, char := range s {
 		seen[char] += 1
 
+		// End loop so the i+1 is not checked and an out of
+		// range occurs
 		if i == len(s)-1 || rune(s[i+1]) != char {
 			compressed += fmt.Sprintf("%c%d", char, seen[char])
 			seen = make(map[rune]int)
