@@ -27,6 +27,8 @@ func CompressString(s string) string {
 		}
 	}
 
+	// Just return string if it's shorter than the compressed
+	// version
 	if len(s) < len(compressed) {
 		return s
 	}
