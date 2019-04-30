@@ -5,7 +5,7 @@
 
 package main
 
-import "fmt"
+import "testing"
 
 func URLify(s string) string {
 	runes := []rune(s)
@@ -22,11 +22,25 @@ func URLify(s string) string {
 	return string(runes)
 }
 
-func main() {
+func TestURLify(t *testing.T) {
 	str1 := "Hello World  "
-	str2 := "A much longer test string with a lot more spaces                   "
+	ans1 := "Hello%20World"
+
+	str2 := "A much longer test string with a lot more spaces                  "
+	ans2 := "A%20much%20longer%20test%20string%20with%20a%20lot%20more%20spaces"
+
 	str3 := "One more for good measure        "
-	fmt.Println(URLify(str1))
-	fmt.Println(URLify(str2))
-	fmt.Println(URLify(str3))
+	ans3 := "One%20more%20for%20good%20measure"
+
+	if ans1 != URLify(str1) {
+		t.Errorf("Expected \"%s\" but got \"%s\"", ans1, URLify(str1))
+	}
+
+	if ans2 != URLify(str2) {
+		t.Errorf("Expected \"%s\" but got \"%s\"", ans2, URLify(str2))
+	}
+
+	if ans3 != URLify(str3) {
+		t.Errorf("Expected \"%s\" but got \"%s\"", ans3, URLify(str3))
+	}
 }
