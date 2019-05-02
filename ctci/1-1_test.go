@@ -3,7 +3,7 @@
 // structures?
 package main
 
-import "fmt"
+import "testing"
 
 // Using additional data structures (map or hash table)
 func IsUnique1(s string) bool {
@@ -45,13 +45,39 @@ func IsUnique3(s string) bool {
 	return true
 }
 
-func main() {
-	fmt.Println(IsUnique1("foobar"))
-	fmt.Println(IsUnique1("abcdefghijklmnopqrstuvwxyz"))
-	fmt.Println("---")
-	fmt.Println(IsUnique2("foobar"))
-	fmt.Println(IsUnique2("abcdefghijklmnopqrstuvwxyz"))
-	fmt.Println("---")
-	fmt.Println(IsUnique3("foobar"))
-	fmt.Println(IsUnique3("abcdefghijklmnopqrstuvwxyz"))
+func TestIsUnique1(t *testing.T) {
+	s1 := "foobar"
+	if IsUnique1(s1) == true {
+		t.Errorf("%s is not unique", s1)
+	}
+
+	s2 := "abcdefghijklmnopqrstuvwxyz"
+	if IsUnique1(s2) != true {
+		t.Errorf("%s should be unique", s2)
+	}
+
+}
+
+func TestIsUnique2(t *testing.T) {
+	s1 := "foobar"
+	if IsUnique2(s1) == true {
+		t.Errorf("%s is not unique", s1)
+	}
+
+	s2 := "abcdefghijklmnopqrstuvwxyz"
+	if IsUnique2(s2) != true {
+		t.Errorf("%s should be unique", s2)
+	}
+}
+
+func TestIsUnique3(t *testing.T) {
+	s1 := "foobar"
+	if IsUnique3(s1) == true {
+		t.Errorf("%s is not unique", s1)
+	}
+
+	s2 := "abcdefghijklmnopqrstuvwxyz"
+	if IsUnique3(s2) != true {
+		t.Errorf("%s should be unique", s2)
+	}
 }
