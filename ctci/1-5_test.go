@@ -16,17 +16,27 @@ func StringWithoutIndex(s string, i int) string {
 }
 
 func OneAway(s1, s2 string) bool {
+	// Do either of the strings match if the last character is
+	// removed?
+	// Ex: pales, pale -> true
 	if s1[:len(s1)-1] == s2 || s2[:len(s2)-1] == s1 {
 		return true
 	}
 
 	for i := 0; i < len(s1) && i < len(s2); i++ {
+		// Does the first string without the i'th charater
+		// match the second?
+		// Ex: pale, ale -> true
 		if StringWithoutIndex(s1, i) == s2 {
 			return true
 		}
+		// Same as above if the strings were swapped.
+		// Ex: ale, pale -> true
 		if StringWithoutIndex(s2, i) == s1 {
 			return true
 		}
+		// Do both match if both i'th characters are removed?
+		// Ex: pale, bale -> true
 		if StringWithoutIndex(s1, i) == StringWithoutIndex(s2, i) {
 			return true
 		}
