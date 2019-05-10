@@ -30,7 +30,6 @@ func TestRotateMatrix(t *testing.T) {
 		{9, 10, 11, 12},
 		{13, 14, 15, 16},
 	}
-
 	answer := matrix{
 		{13, 9, 5, 1},
 		{14, 10, 6, 2},
@@ -48,7 +47,6 @@ func TestRotateMatrix(t *testing.T) {
 		{1, 2, 3, 4},
 		{1, 2, 3, 4},
 	}
-
 	answer = matrix{
 		{1, 1, 1, 1},
 		{2, 2, 2, 2},
