@@ -16,8 +16,8 @@ type Table struct {
 
 func hash(s string) int {
 	sum := 0
-	for i, c := range s {
-		sum += int(c) * i
+	for _, c := range s {
+		sum += int(c) * 31
 	}
 
 	return sum % ARRAYSIZE
