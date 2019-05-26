@@ -27,6 +27,15 @@ func (l *LinkedList) Append(v interface{}) {
 	l.Tail = node
 }
 
+func (l *LinkedList) Size() int {
+	i := 0
+	for current := l.Head; current != nil; current = current.Next {
+		i++
+	}
+
+	return i
+}
+
 func (l *LinkedList) String() string {
 	var list string
 	for current := l.Head; current != nil; current = current.Next {
@@ -51,6 +60,7 @@ func PrintReversed(l *LinkedList) {
 
 func main() {
 	ll := &LinkedList{nil, nil}
+	fmt.Println("Size:", ll.Size())
 	ll.Append(1)
 	ll.Append(2)
 	ll.Append(3)
@@ -58,4 +68,5 @@ func main() {
 
 	fmt.Println(ll)
 	PrintReversed(ll)
+	fmt.Println("Size:", ll.Size())
 }
