@@ -28,6 +28,11 @@ func (l *LinkedList) Append(v interface{}) {
 }
 
 func (l *LinkedList) Remove(v interface{}) {
+	if l.Head.Value == v {
+		l.Head = l.Head.Next
+		return
+	}
+
 	last := l.Head
 	for current := l.Head; current != nil; current = current.Next {
 		if current.Value == v {
@@ -81,8 +86,13 @@ func main() {
 	PrintReversed(ll)
 	fmt.Println("Size:", ll.Size())
 
+	ll.Remove(1)
+	fmt.Println(ll)
 	ll.Remove(3)
 	fmt.Println(ll)
 	ll.Remove(4)
 	fmt.Println(ll)
+
+	fmt.Println(ll.Head)
+	fmt.Println(ll.Tail)
 }
