@@ -37,6 +37,9 @@ func (l *LinkedList) Remove(v interface{}) {
 	for current := l.Head; current != nil; current = current.Next {
 		if current.Value == v {
 			last.Next = current.Next
+			if current == l.Tail {
+				l.Tail = last
+			}
 			return
 		}
 		last = current
@@ -86,13 +89,18 @@ func main() {
 	PrintReversed(ll)
 	fmt.Println("Size:", ll.Size())
 
-	ll.Remove(1)
-	fmt.Println(ll)
-	ll.Remove(3)
-	fmt.Println(ll)
 	ll.Remove(4)
 	fmt.Println(ll)
+	fmt.Println(ll.Head)
+	fmt.Println(ll.Tail)
 
+	ll.Remove(3)
+	fmt.Println(ll)
+	fmt.Println(ll.Head)
+	fmt.Println(ll.Tail)
+
+	ll.Remove(1)
+	fmt.Println(ll)
 	fmt.Println(ll.Head)
 	fmt.Println(ll.Tail)
 }
