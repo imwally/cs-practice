@@ -69,11 +69,10 @@ func (l *LinkedList) String() string {
 
 func (l *LinkedList) Reverse() {
 	var last *Node
-	for current := l.Head; current != nil; current = current.Next {
+	for current := l.Head; current != nil; current = current.Prev {
 		current.Prev = current.Next
 		current.Next = last
 		last = current
-		current = current.Prev
 	}
 	oldHead := l.Head
 	l.Head = l.Tail
