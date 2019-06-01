@@ -67,6 +67,19 @@ func (l *LinkedList) String() string {
 	return list
 }
 
+func (l *LinkedList) Reverse() {
+	var last *Node
+	for current := l.Head; current != nil; current = current.Next {
+		current.Prev = current.Next
+		current.Next = last
+		last = current
+		current = current.Prev
+	}
+	oldHead := l.Head
+	l.Head = l.Tail
+	l.Tail = oldHead
+}
+
 func PrintReversed(l *LinkedList) {
 	for current := l.Tail; current != nil; current = current.Prev {
 		fmt.Printf("%v ", current.Value)
@@ -90,9 +103,13 @@ func main() {
 	ll.Append(4)
 
 	fmt.Println("List:", ll)
-	fmt.Printf("Reversed: ")
+	fmt.Printf("Printing Reversed: ")
 	PrintReversed(ll)
 	fmt.Println("Size:", ll.Size())
+
+	fmt.Println("Reversing list.")
+	ll.Reverse()
+	fmt.Println("List:", ll)
 
 	fmt.Println("Remove: 4")
 	ll.Remove(4)
