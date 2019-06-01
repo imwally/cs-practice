@@ -110,6 +110,9 @@ func main() {
 	ll.Reverse()
 	fmt.Println("List:", ll)
 
+	fmt.Printf("Printing Reverse: ")
+	PrintReversed(ll)
+
 	fmt.Println("Remove: 4")
 	ll.Remove(4)
 	fmt.Println("List:", ll)
