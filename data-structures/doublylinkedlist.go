@@ -118,6 +118,7 @@ func main() {
 	fmt.Println("List:", ll)
 	fmt.Println("Head:", ll.Head.Value)
 	fmt.Println("Tail:", ll.Tail.Value)
+	fmt.Println("Size:", ll.Size())
 
 	fmt.Println("Remove: 3")
 	ll.Remove(3)
