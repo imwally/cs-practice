@@ -53,3 +53,35 @@ func TestSize(t *testing.T) {
 		t.Errorf("Size failed: got %d, expected %d", dll.Size(), 2)
 	}
 }
+
+func TestRemove(t *testing.T) {
+	dll := new(DoublyLinkedList)
+
+	dll.Append(1)
+	dll.Append(2)
+	dll.Append(3)
+
+	dll.Remove(2)
+
+	if fmt.Sprintf("%s", dll) != "1 -> 3" {
+		t.Errorf("Remove failed: got \"%s\", expected \"1 -> 3\"", dll)
+	}
+
+	if dll.Head.Value != 1 {
+		t.Errorf("Remove failed: list Head is %d, expected 1", dll.Head.Value)
+	}
+
+	if dll.Tail.Value != 3 {
+		t.Errorf("Remove failed: list Head is %d, expected 3", dll.Head.Value)
+	}
+
+	dll.Remove(1)
+
+	if fmt.Sprintf("%s", dll) != "3" {
+		t.Errorf("Remove failed: got \"%s\", expected \"3\"", dll)
+	}
+
+	if dll.Head.Value != 3 && dll.Tail.Value != 3 {
+		t.Errorf("Remove failed: list Head and Tail point to %d and %d, expected both to point to 3", dll.Head.Value, dll.Tail.Value)
+	}
+}
