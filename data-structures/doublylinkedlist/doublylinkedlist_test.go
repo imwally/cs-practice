@@ -7,6 +7,7 @@ import (
 
 func TestAppend(t *testing.T) {
 	dll := new(DoublyLinkedList)
+
 	for i := 1; i < 6; i++ {
 		dll.Append(i)
 	}
@@ -34,5 +35,21 @@ func TestPrint(t *testing.T) {
 	dll.Append(3)
 	if fmt.Sprintf("%s", dll) != "1 -> 2 -> 3" {
 		t.Errorf("Print failed: printed \"%s\" instead \"1 -> 2 -> 3\"", dll)
+	}
+}
+
+func TestSize(t *testing.T) {
+	dll := new(DoublyLinkedList)
+
+	dll.Append(1)
+	dll.Append(2)
+	if dll.Size() != 2 {
+		t.Errorf("Size failed: got %d, expected %d", dll.Size(), 2)
+	}
+
+	dll.Append(3)
+	dll.Append(4)
+	if dll.Size() != 4 {
+		t.Errorf("Size failed: got %d, expected %d", dll.Size(), 2)
 	}
 }
