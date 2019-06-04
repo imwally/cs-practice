@@ -74,6 +74,7 @@ func (l *LinkedList) Reverse() {
 		current.Next = last
 		last = current
 	}
+
 	oldHead := l.Head
 	l.Head = l.Tail
 	l.Tail = oldHead
