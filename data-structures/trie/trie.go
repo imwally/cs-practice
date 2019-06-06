@@ -11,7 +11,6 @@ type Trie struct {
 
 func (t *Trie) Insert(s string) {
 	current := &t.Root
-
 	for _, r := range s {
 		if _, ok := current.Children[r]; !ok {
 			current.Children = make(map[rune]*TrieNode)

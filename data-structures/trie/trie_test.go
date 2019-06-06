@@ -1,8 +1,6 @@
 package trie
 
-import (
-	"testing"
-)
+import "testing"
 
 func TestInsert(t *testing.T) {
 	t1 := new(Trie)
