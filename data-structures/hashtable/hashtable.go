@@ -1,6 +1,4 @@
-package main
-
-import "fmt"
+package hashtable
 
 const ARRAYSIZE int = 16
 
@@ -47,23 +45,4 @@ func (t *Table) Get(key string) string {
 	}
 
 	return ""
-}
-
-func main() {
-	t := new(Table)
-
-	t.Insert("wally", "Wally Jones")
-	t.Insert("test", "This is a test")
-	t.Insert("hello", "Hello, World!")
-	t.Insert("tea", "Matcha")
-	t.Insert("coffee", "Black")
-
-	fmt.Println(t.Get("wally"))
-	fmt.Println(t.Get("test"))
-	fmt.Println(t.Get("hello"))
-	fmt.Println(t.Get("tea"))
-	fmt.Println(t.Get("coffee"))
-	fmt.Println(t.Get("null"))
-
-	fmt.Println(t.Storage)
 }
