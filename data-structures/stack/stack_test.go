@@ -34,3 +34,34 @@ func TestPeek(t *testing.T) {
 		t.Error("Peek failed: should be 3")
 	}
 }
+
+func TestSize(t *testing.T) {
+	s := new(Stack)
+
+	for i := 1; i < 5; i++ {
+		s.Push(i)
+	}
+
+	if s.Size() != 4 {
+		t.Error("Size failed: should be 4")
+	}
+}
+
+func TestPop(t *testing.T) {
+	s := new(Stack)
+
+	for i := 1; i < 5; i++ {
+		s.Push(i)
+	}
+
+	popped := make([]int, s.Size())
+	for i := 3; s.Size() > 0; i-- {
+		popped[i] = s.Pop()
+	}
+
+	for i, v := range popped {
+		if v != i+1 {
+			t.Errorf("Pop failed: %d should be %d", v, i+1)
+		}
+	}
+}
