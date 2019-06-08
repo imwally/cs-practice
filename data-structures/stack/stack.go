@@ -1,4 +1,4 @@
-package main
+package stack
 
 import "fmt"
 
@@ -47,26 +47,4 @@ func (s Stack) String() string {
 
 	// Everything but the last comma and space
 	return str[:len(str)-2]
-}
-
-func main() {
-	s := new(Stack)
-	fmt.Println("Push: 1")
-	s.Push(1)
-	fmt.Println("Push: 2")
-	s.Push(2)
-	fmt.Println("Push: 3")
-	s.Push(3)
-
-	fmt.Println("Stack:", s)
-	fmt.Println("Length:", s.Length())
-	fmt.Println("Pop:", s.Pop())
-	fmt.Println("Stack:", s)
-	fmt.Println("Peek:", s.Peek())
-	fmt.Println("Pop:", s.Pop())
-	fmt.Println("Length:", s.Length())
-	fmt.Println("Stack:", s)
-	fmt.Println("Pop:", s.Pop())
-	fmt.Println("Stack:", s)
-	fmt.Println("Peek:", s.Peek())
 }
