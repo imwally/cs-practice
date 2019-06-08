@@ -6,7 +6,7 @@ type Stack struct {
 	Storage []int
 }
 
-func (s *Stack) Length() int {
+func (s *Stack) Size() int {
 	return len(s.Storage)
 }
 
@@ -27,7 +27,7 @@ func (s *Stack) Pop() int {
 }
 
 func (s *Stack) Peek() int {
-	if s.Length() < 1 {
+	if s.Size() < 1 {
 		panic("stack underflow")
 	}
 
@@ -36,12 +36,12 @@ func (s *Stack) Peek() int {
 }
 
 func (s Stack) String() string {
-	if s.Length() < 1 {
+	if s.Size() < 1 {
 		return ""
 	}
 
 	var str string
-	for i := s.Length() - 1; i >= 0; i-- {
+	for i := s.Size() - 1; i >= 0; i-- {
 		str += fmt.Sprintf("%d, ", s.Storage[i])
 	}
 
