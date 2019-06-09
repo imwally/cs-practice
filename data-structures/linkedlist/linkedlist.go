@@ -1,4 +1,4 @@
-package main
+package linkedlist
 
 import "fmt"
 
@@ -35,14 +35,4 @@ func (l *LinkedList) String() string {
 	}
 
 	return list
-}
-
-func main() {
-	ll := &LinkedList{nil, nil}
-	ll.Append(1)
-	ll.Append(2)
-	ll.Append(3)
-	ll.Append(4)
-
-	fmt.Println(ll)
 }
