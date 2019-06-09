@@ -28,9 +28,9 @@ func (l *LinkedList) Append(v interface{}) {
 func (l *LinkedList) String() string {
 	var list string
 	for current := l.Head; current != nil; current = current.Next {
-		list += fmt.Sprintf("%v ", current.Value)
+		list += fmt.Sprintf("%v", current.Value)
 		if current.Next != nil {
-			list += fmt.Sprintf("-> ")
+			list += fmt.Sprintf(" -> ")
 		}
 	}
 
