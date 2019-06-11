@@ -26,3 +26,19 @@ func TestInsert(t *testing.T) {
 		t.Errorf("Insert failed: expected %d, got %d", expected, got)
 	}
 }
+
+func TestRemove(t *testing.T) {
+	h := new(Heap)
+
+	for i := 10; i > 0; i-- {
+		h.Insert(i)
+	}
+
+	for i := 1; i <= 10; i++ {
+		expected := i
+		got := h.Remove()
+		if got != expected {
+			t.Errorf("Remove failed: expected %d, got %d", expected, got)
+		}
+	}
+}
