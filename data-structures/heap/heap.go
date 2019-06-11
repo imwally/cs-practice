@@ -96,6 +96,13 @@ func (h *Heap) Pop() int {
 	swap(h.Data, 0, h.NextIndex)
 	h.HeapifyDown()
 
+	// Resize array if only half is being used
+	if h.NextIndex == len(h.Data)/2 {
+		newData := make([]int, len(h.Data)/2)
+		copy(newData, h.Data)
+		h.Data = newData
+	}
+
 	return root
 }
 
