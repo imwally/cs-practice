@@ -12,6 +12,15 @@ type LinkedList struct {
 	Tail *Node
 }
 
+func (l *LinkedList) Size() int {
+	i := 0
+	for current := l.Head; current != nil; current = current.Next {
+		i++
+	}
+
+	return i
+}
+
 func (l *LinkedList) Append(v interface{}) {
 	node := &Node{v, nil}
 	if l.Head == nil {

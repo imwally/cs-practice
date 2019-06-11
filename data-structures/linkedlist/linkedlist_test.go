@@ -41,3 +41,17 @@ func TestString(t *testing.T) {
 		t.Errorf("String failed: expected \"%s\", got \"%s\"", expected, printed)
 	}
 }
+
+func TestSize(t *testing.T) {
+	l := new(LinkedList)
+
+	for i := 1; i < 5; i++ {
+		l.Append(i)
+	}
+
+	size := l.Size()
+	expected := 4
+	if size != expected {
+		t.Errorf("Size failed: expected %d, got %d", expected, size)
+	}
+}
