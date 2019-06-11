@@ -11,6 +11,12 @@ func swap(data []int, a, b int) {
 	data[a], data[b] = data[b], data[a]
 }
 
+func New() *Heap {
+	data := make([]int, 10)
+
+	return &Heap{data, 0}
+}
+
 func (h *Heap) HeapifyUp() {
 	child := h.NextIndex
 	for child > 0 {
@@ -46,7 +52,13 @@ func (h *Heap) HeapifyDown() {
 }
 
 func (h *Heap) Insert(v int) {
-	h.Data = append(h.Data, v)
+	if h.NextIndex == len(h.Data) {
+		newData := make([]int, len(h.Data)*2)
+		copy(newData, h.Data)
+		h.Data = newData
+	}
+
+	h.Data[h.NextIndex] = v
 	h.HeapifyUp()
 	h.NextIndex++
 }
@@ -56,7 +68,7 @@ func (h *Heap) Remove() int {
 	root := h.Data[0]
 	swap(h.Data, 0, h.NextIndex)
 	h.HeapifyDown()
-	h.Data = append(h.Data[:0], h.Data[:h.NextIndex]...)
+
 	return root
 }
 

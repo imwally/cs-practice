@@ -1,9 +1,11 @@
 package heap
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestInsert(t *testing.T) {
-	h := new(Heap)
+	h := New()
 
 	expected := 10
 	h.Insert(expected)
@@ -28,13 +30,14 @@ func TestInsert(t *testing.T) {
 }
 
 func TestRemove(t *testing.T) {
-	h := new(Heap)
+	h := New()
+	size := 10
 
-	for i := 10; i > 0; i-- {
+	for i := size; i > 0; i-- {
 		h.Insert(i)
 	}
 
-	for i := 1; i <= 10; i++ {
+	for i := 1; i <= size; i++ {
 		expected := i
 		got := h.Remove()
 		if got != expected {
