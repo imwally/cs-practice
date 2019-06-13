@@ -1,8 +1,6 @@
 package heap
 
-import (
-	"testing"
-)
+import "testing"
 
 func TestPush(t *testing.T) {
 	h := New()
@@ -43,5 +41,37 @@ func TestPop(t *testing.T) {
 		if got != expected {
 			t.Errorf("Pop failed: expected %d, got %d", expected, got)
 		}
+	}
+}
+
+func TeatPeek(t *testing.T) {
+	h := New()
+
+	h.Push(5)
+	expected := 5
+	got := h.Peek()
+	if got != expected {
+		t.Errorf("Peek failed: expected %d, got %d", expected, got)
+	}
+
+	h.Push(4)
+	expected = 4
+	got = h.Peek()
+	if got != expected {
+		t.Errorf("Peek failed: expected %d, got %d", expected, got)
+	}
+
+	h.Push(6)
+	expected = 4
+	got = h.Peek()
+	if got != expected {
+		t.Errorf("Peek failed: expected %d, got %d", expected, got)
+	}
+
+	h.Push(1)
+	expected = 1
+	got = h.Peek()
+	if got != expected {
+		t.Errorf("Peek failed: expected %d, got %d", expected, got)
 	}
 }

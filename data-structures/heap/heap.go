@@ -106,6 +106,10 @@ func (h *Heap) Pop() int {
 	return root
 }
 
+func (h *Heap) Peek() int {
+	return h.Data[0]
+}
+
 func (h *Heap) String() string {
 	s := "["
 	for i := 0; i < h.NextIndex; i++ {
