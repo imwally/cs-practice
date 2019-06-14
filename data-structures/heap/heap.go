@@ -17,6 +17,18 @@ func New() *Heap {
 	return &Heap{data, 0}
 }
 
+func (h *Heap) Shrink() {
+	newData := make([]int, len(h.Data)/2)
+	copy(newData, h.Data)
+	h.Data = newData
+}
+
+func (h *Heap) Grow() {
+	newData := make([]int, len(h.Data)*2)
+	copy(newData, h.Data)
+	h.Data = newData
+}
+
 // HeapifyUp starts at the last element in the array and works
 // backwards from child to parent checking if the value is smaller
 // than its parent. If the child is smaller than the parent, they are
@@ -73,9 +85,7 @@ func (h *Heap) HeapifyDown() {
 func (h *Heap) Push(v int) {
 	// Resize array if full
 	if h.NextIndex == len(h.Data) {
-		newData := make([]int, len(h.Data)*2)
-		copy(newData, h.Data)
-		h.Data = newData
+		h.Grow()
 	}
 
 	h.Data[h.NextIndex] = v
@@ -98,9 +108,7 @@ func (h *Heap) Pop() int {
 
 	// Resize array if only half is being used
 	if h.NextIndex == len(h.Data)/2 {
-		newData := make([]int, len(h.Data)/2)
-		copy(newData, h.Data)
-		h.Data = newData
+		h.Shrink()
 	}
 
 	return root
