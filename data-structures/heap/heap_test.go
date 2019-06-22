@@ -44,7 +44,7 @@ func TestPop(t *testing.T) {
 	}
 }
 
-func TeatPeek(t *testing.T) {
+func TestPeek(t *testing.T) {
 	h := New()
 
 	h.Push(5)
