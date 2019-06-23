@@ -115,6 +115,10 @@ func (h *Heap) Pop() int {
 }
 
 func (h *Heap) Peek() int {
+	if h.NextIndex == 0 {
+		panic("stack underflow")
+	}
+
 	return h.Data[0]
 }
 
