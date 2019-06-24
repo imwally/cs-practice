@@ -2,6 +2,26 @@ package heap
 
 import "testing"
 
+func TestGrow(t *testing.T) {
+	h := New()
+	for i := 1; i <= 10; i++ {
+		h.Push(i)
+	}
+
+	expected := 10
+	got := len(h.Data)
+	if got != expected {
+		t.Errorf("Grow failed: expected %d, got %d", expected, got)
+	}
+
+	h.Push(11)
+	expected = 20
+	got = len(h.Data)
+	if got != expected {
+		t.Errorf("Grow failed: expected %d, got %d", expected, got)
+	}
+}
+
 func TestPush(t *testing.T) {
 	h := New()
 
