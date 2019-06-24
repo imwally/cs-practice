@@ -22,6 +22,26 @@ func TestGrow(t *testing.T) {
 	}
 }
 
+func TestShrink(t *testing.T) {
+	h := New()
+	for i := 1; i <= 11; i++ {
+		h.Push(i)
+	}
+
+	expected := 20
+	got := len(h.Data)
+	if got != expected {
+		t.Errorf("Shrink failed: expected %d, got %d", expected, got)
+	}
+
+	h.Pop()
+	expected = 10
+	got = len(h.Data)
+	if got != expected {
+		t.Errorf("Grow failed: expected %d, got %d", expected, got)
+	}
+}
+
 func TestPush(t *testing.T) {
 	h := New()
 
