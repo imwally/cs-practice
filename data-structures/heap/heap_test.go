@@ -1,6 +1,9 @@
 package heap
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestGrow(t *testing.T) {
 	h := New()
@@ -113,5 +116,20 @@ func TestPeek(t *testing.T) {
 	got = h.Peek()
 	if got != expected {
 		t.Errorf("Peek failed: expected %d, got %d", expected, got)
+	}
+}
+
+func TestString(t *testing.T) {
+	h := New()
+
+	h.Push(10)
+	h.Push(3)
+	h.Push(2)
+	h.Push(1)
+
+	expected := "[1, 2, 3, 10]"
+	got := fmt.Sprintf("%s", h)
+	if got != expected {
+		t.Errorf("String failed: expected \"%s\", got \"%s\"", expected, got)
 	}
 }
