@@ -2,18 +2,19 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"sort"
 
 	"../../data-structures/graph"
 )
 
-func shortestDistance(g *graph.Graph, n1, n2 *graph.Node) int {
-	distances := make(map[*graph.Node]int)
-	shortest := make(map[*graph.Node]int)
+func shortestDistance(g *graph.Graph, n1, n2 *graph.Node) float64 {
+	distances := make(map[*graph.Node]float64)
+	shortest := make(map[*graph.Node]float64)
 
 	// Set all distances to an arbitrarly high number
 	for _, n := range g.Nodes {
-		distances[n] = 999999
+		distances[n] = math.Inf(1)
 	}
 
 	// Set start to 0
@@ -23,7 +24,7 @@ func shortestDistance(g *graph.Graph, n1, n2 *graph.Node) int {
 		// Sort distances low to high
 		type kv struct {
 			Key   *graph.Node
-			Value int
+			Value float64
 		}
 
 		var ss []kv
@@ -46,7 +47,7 @@ func shortestDistance(g *graph.Graph, n1, n2 *graph.Node) int {
 		for _, edge := range current.Edges {
 			// Only compute distances not seen yet
 			if _, ok := distances[edge.Node]; ok {
-				newDistance := distance + edge.Distance
+				newDistance := distance + float64(edge.Distance)
 				// Update distances map if route is shorter
 				if newDistance < distances[edge.Node] {
 					distances[edge.Node] = newDistance
