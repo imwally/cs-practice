@@ -12,7 +12,7 @@ func shortestDistance(g *graph.Graph, n1, n2 *graph.Node) float64 {
 	distances := make(map[*graph.Node]float64)
 	shortest := make(map[*graph.Node]float64)
 
-	// Set all distances to an arbitrarly high number
+	// Set all distances to infinity
 	for _, n := range g.Nodes {
 		distances[n] = math.Inf(1)
 	}
@@ -40,7 +40,7 @@ func shortestDistance(g *graph.Graph, n1, n2 *graph.Node) float64 {
 		current, distance := ss[0].Key, ss[0].Value
 		shortest[current] = distance
 
-		// Remove from map
+		// Remove current from map so that's not re-computed
 		delete(distances, current)
 
 		// Check all edges connected to current
