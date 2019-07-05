@@ -8,7 +8,7 @@ type Edge struct {
 }
 
 type Node struct {
-	Value int
+	Value interface{}
 	Edges []*Edge
 }
 
