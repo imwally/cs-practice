@@ -43,4 +43,10 @@ func TestFind(t *testing.T) {
 	if got != expected {
 		t.Errorf("find error: got %d, expected %d\n", got, expected)
 	}
+
+	got = find(1000001, slice)
+	expected = -1
+	if got != expected {
+		t.Errorf("find error: got %d, expected %d\n", got, expected)
+	}
 }
