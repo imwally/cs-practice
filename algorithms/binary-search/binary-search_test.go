@@ -2,7 +2,24 @@ package main
 
 import "testing"
 
-func find(x int, slice []int) int {
+func FindRecursive(x int, slice []int) int {
+	mid := len(slice) - 1 // 2
+	if slice[mid] == x {
+		return slice[mid]
+	}
+
+	if mid > 0 {
+		if x < slice[mid] {
+			return FindRecursive(x, slice[:mid])
+		} else {
+			return FindRecursive(x, slice[mid:])
+		}
+	}
+
+	return -1
+}
+
+func FindIterative(x int, slice []int) int {
 	i, j := 0, len(slice)-1
 
 	for i <= j {
@@ -20,33 +37,65 @@ func find(x int, slice []int) int {
 	return -1
 }
 
-func TestFind(t *testing.T) {
+func TestFindIterative(t *testing.T) {
 	var slice []int
 	for i := 1; i <= 1000000; i++ {
 		slice = append(slice, i)
 	}
 
-	got := find(8270, slice)
+	got := FindIterative(8270, slice)
 	expected := 8270
 	if got != expected {
 		t.Errorf("find error: got %d, expected %d\n", got, expected)
 	}
 
-	got = find(1, slice)
+	got = FindIterative(1, slice)
 	expected = 1
 	if got != expected {
 		t.Errorf("find error: got %d, expected %d\n", got, expected)
 	}
 
-	got = find(999999, slice)
+	got = FindIterative(999999, slice)
 	expected = 999999
 	if got != expected {
 		t.Errorf("find error: got %d, expected %d\n", got, expected)
 	}
 
-	got = find(1000001, slice)
+	got = FindIterative(1000001, slice)
 	expected = -1
 	if got != expected {
 		t.Errorf("find error: got %d, expected %d\n", got, expected)
 	}
+}
+
+func TestFindRecursive(t *testing.T) {
+	var slice []int
+	for i := 1; i <= 1000000; i++ {
+		slice = append(slice, i)
+	}
+
+	got := FindRecursive(8270, slice)
+	expected := 8270
+	if got != expected {
+		t.Errorf("find error: got %d, expected %d\n", got, expected)
+	}
+
+	got = FindRecursive(1, slice)
+	expected = 1
+	if got != expected {
+		t.Errorf("find error: got %d, expected %d\n", got, expected)
+	}
+
+	got = FindRecursive(999999, slice)
+	expected = 999999
+	if got != expected {
+		t.Errorf("find error: got %d, expected %d\n", got, expected)
+	}
+
+	got = FindRecursive(1000001, slice)
+	expected = -1
+	if got != expected {
+		t.Errorf("find error: got %d, expected %d\n", got, expected)
+	}
+
 }
