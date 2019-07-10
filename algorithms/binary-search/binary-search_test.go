@@ -3,7 +3,7 @@ package main
 import "testing"
 
 func FindRecursive(x int, slice []int) int {
-	mid := len(slice) - 1 // 2
+	mid := len(slice) / 2
 	if slice[mid] == x {
 		return slice[mid]
 	}
