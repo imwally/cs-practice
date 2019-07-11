@@ -97,5 +97,4 @@ func TestFindRecursive(t *testing.T) {
 	if got != expected {
 		t.Errorf("find error: got %d, expected %d\n", got, expected)
 	}
-
 }
