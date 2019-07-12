@@ -97,4 +97,10 @@ func TestFindRecursive(t *testing.T) {
 	if got != expected {
 		t.Errorf("find error: got %d, expected %d\n", got, expected)
 	}
+
+	got = FindRecursive(3, []int{1, 2, 3, 4, 5})
+	expected = 3
+	if got != expected {
+		t.Errorf("find error: got %d, expected %d\n", got, expected)
+	}
 }
