@@ -15,6 +15,10 @@ func (a *Array) Append(v interface{}) {
 	a.Len++
 }
 
+func (a *Array) Size() int {
+	return a.Len
+}
+
 func New() *Array {
 	data := make([]interface{}, 10)
 
@@ -29,4 +33,5 @@ func main() {
 	a.Append(4)
 
 	fmt.Println(a)
+	fmt.Println(a.Size())
 }
