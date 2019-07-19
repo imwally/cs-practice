@@ -28,8 +28,27 @@ func (a *Array) Append(v interface{}) {
 	a.Len++
 }
 
+func (a *Array) Pop() interface{} {
+	a.Len--
+
+	return a.Data[a.Len]
+}
+
 func (a *Array) Size() int {
 	return a.Len
+}
+
+func (a *Array) String() string {
+	s := "["
+	for i := 0; i < a.Len; i++ {
+		s += fmt.Sprintf("%v", a.Data[i])
+		if i < a.Len-1 {
+			s += ", "
+		}
+	}
+	s += "]"
+
+	return s
 }
 
 func New() *Array {
@@ -47,4 +66,7 @@ func main() {
 	fmt.Println(a)
 	fmt.Println(a.Size())
 	fmt.Println(a.Cap)
+
+	fmt.Println(a.Pop())
+	fmt.Println(a.Pop())
 }
