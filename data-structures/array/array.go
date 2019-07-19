@@ -11,6 +11,7 @@ type Array struct {
 func (a *Array) grow() {
 	newCap := a.Cap * 2
 	newData := make([]interface{}, newCap)
+
 	copy(newData, a.Data)
 
 	a.Data = newData
@@ -19,8 +20,11 @@ func (a *Array) grow() {
 
 func (a *Array) Append(v interface{}) {
 	i := a.Len
-	a.Data[i] = v
+	if i == a.Cap {
+		a.grow()
+	}
 
+	a.Data[i] = v
 	a.Len++
 }
 
@@ -36,15 +40,11 @@ func New() *Array {
 
 func main() {
 	a := New()
-	a.Append(1)
-	a.Append(2)
-	a.Append(3)
-	a.Append(4)
+	for i := 1; i <= 30; i++ {
+		a.Append(i)
+	}
 
 	fmt.Println(a)
 	fmt.Println(a.Size())
 	fmt.Println(a.Cap)
-	a.grow()
-	fmt.Println(a.Cap)
-	fmt.Println(a)
 }
