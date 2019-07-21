@@ -18,6 +18,16 @@ func (a *Array) grow() {
 	a.Cap = newCap
 }
 
+func (a *Array) shrink() {
+	newCap := int(a.Cap / 2)
+	newData := make([]interface{}, newCap)
+
+	copy(newData, a.Data)
+
+	a.Data = newData
+	a.Cap = newCap
+}
+
 func (a *Array) Append(v interface{}) {
 	i := a.Len
 	if i == a.Cap {
@@ -30,6 +40,10 @@ func (a *Array) Append(v interface{}) {
 
 func (a *Array) Pop() interface{} {
 	a.Len--
+
+	if a.Len < int(a.Cap/2) {
+		a.shrink()
+	}
 
 	return a.Data[a.Len]
 }
