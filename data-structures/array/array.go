@@ -81,6 +81,8 @@ func main() {
 	fmt.Println(a.Size())
 	fmt.Println(a.Cap)
 
-	fmt.Println(a.Pop())
-	fmt.Println(a.Pop())
+	for i := a.Size(); i > 0; i-- {
+		fmt.Println(a.Pop())
+		fmt.Println(a.Data)
+	}
 }
