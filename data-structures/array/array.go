@@ -53,14 +53,11 @@ func (a *Array) Size() int {
 }
 
 func (a *Array) String() string {
-	s := "["
+	var s string
 	for i := 0; i < a.Len; i++ {
-		s += fmt.Sprintf("%v", a.Data[i])
-		if i < a.Len-1 {
-			s += ", "
-		}
+		s += fmt.Sprintf("%v ", a.Data[i])
 	}
-	s += "]"
+	s = fmt.Sprintf("[%s]", s[:len(s)-1])
 
 	return s
 }
