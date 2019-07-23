@@ -39,6 +39,10 @@ func (a *Array) Append(v interface{}) {
 }
 
 func (a *Array) Pop() interface{} {
+	if a.Len < 1 {
+		panic("stack underflow")
+	}
+
 	a.Len--
 
 	if a.Len < int(a.Cap/2) {
