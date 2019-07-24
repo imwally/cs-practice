@@ -86,4 +86,6 @@ func main() {
 		fmt.Println(a.Pop())
 		fmt.Println(a.Data)
 	}
+
+	fmt.Println(a.Pop())
 }
