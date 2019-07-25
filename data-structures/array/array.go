@@ -1,4 +1,4 @@
-package main
+package array
 
 import "fmt"
 
@@ -69,22 +69,4 @@ func New() *Array {
 	data := make([]interface{}, 10)
 
 	return &Array{data, 0, 10}
-}
-
-func main() {
-	a := New()
-	for i := 1; i <= 30; i++ {
-		a.Append(i)
-	}
-
-	fmt.Println(a)
-	fmt.Println(a.Size())
-	fmt.Println(a.Cap)
-
-	for i := a.Size(); i > 0; i-- {
-		fmt.Println(a.Pop())
-		fmt.Println(a.Data)
-	}
-
-	fmt.Println(a.Pop())
 }
