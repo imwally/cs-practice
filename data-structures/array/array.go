@@ -29,12 +29,11 @@ func (a *Array) shrink() {
 }
 
 func (a *Array) Append(v interface{}) {
-	i := a.Len
-	if i == a.Cap {
+	if a.Len == a.Cap {
 		a.grow()
 	}
 
-	a.Data[i] = v
+	a.Data[a.Len] = v
 	a.Len++
 }
 
