@@ -29,7 +29,7 @@ func TestPop(t *testing.T) {
 		got := a.Pop()
 
 		if expected != got {
-			t.Errorf("append error: got %v, expected  %v", got, expected)
+			t.Errorf("pop error: got %v, expected  %v", got, expected)
 		}
 	}
 }
