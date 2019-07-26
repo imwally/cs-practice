@@ -46,4 +46,14 @@ func TestSize(t *testing.T) {
 	if expected != got {
 		t.Errorf("size error: got %v, expected  %v", got, expected)
 	}
+
+	a.Pop()
+
+	expected = 9
+	got = a.Size()
+
+	if expected != got {
+		t.Errorf("size error: got %v, expected  %v", got, expected)
+	}
+
 }
