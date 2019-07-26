@@ -33,3 +33,17 @@ func TestPop(t *testing.T) {
 		}
 	}
 }
+
+func TestSize(t *testing.T) {
+	a := New()
+	for i := 1; i <= 10; i++ {
+		a.Append(i)
+	}
+
+	expected := 10
+	got := a.Size()
+
+	if expected != got {
+		t.Errorf("size error: got %v, expected  %v", got, expected)
+	}
+}
