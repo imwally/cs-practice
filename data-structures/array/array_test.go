@@ -17,3 +17,19 @@ func TestAppend(t *testing.T) {
 		}
 	}
 }
+
+func TestPop(t *testing.T) {
+	a := New()
+	for i := 1; i <= 10; i++ {
+		a.Append(i)
+	}
+
+	for i := 10; i > 0; i-- {
+		expected := i
+		got := a.Pop()
+
+		if expected != got {
+			t.Errorf("append error: got %v, expected  %v", got, expected)
+		}
+	}
+}
