@@ -57,3 +57,23 @@ func TestSize(t *testing.T) {
 	}
 
 }
+
+func TestGrow(t *testing.T) {
+	a := New()
+	for i := 1; i <= 10; i++ {
+		a.Append(i)
+	}
+
+	expected := 10
+	got := len(a.Data)
+	if expected != got {
+		t.Errorf("grow error: got %v, expected  %v", got, expected)
+	}
+
+	a.Append(11)
+	expected = 20
+	got = len(a.Data)
+	if expected != got {
+		t.Errorf("grow error: got %v, expected  %v", got, expected)
+	}
+}
