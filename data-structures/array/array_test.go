@@ -77,3 +77,25 @@ func TestGrow(t *testing.T) {
 		t.Errorf("grow error: got %v, expected  %v", got, expected)
 	}
 }
+
+func TestShrink(t *testing.T) {
+	a := New()
+	for i := 1; i <= 11; i++ {
+		a.Append(i)
+	}
+
+	expected := 20
+	got := len(a.Data)
+	if expected != got {
+		t.Errorf("shrink error: got %v, expected  %v", got, expected)
+	}
+
+	a.Pop()
+	a.Pop()
+
+	expected = 10
+	got = len(a.Data)
+	if expected != got {
+		t.Errorf("shrink error: got %v, expected  %v", got, expected)
+	}
+}
