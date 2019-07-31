@@ -1,6 +1,9 @@
 package array
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestAppend(t *testing.T) {
 	a := New()
@@ -95,6 +98,19 @@ func TestShrink(t *testing.T) {
 
 	expected = 10
 	got = len(a.Data)
+	if expected != got {
+		t.Errorf("shrink error: got %v, expected  %v", got, expected)
+	}
+}
+
+func TestString(t *testing.T) {
+	a := New()
+	for i := 1; i <= 10; i++ {
+		a.Append(i)
+	}
+
+	expected := "[1 2 3 4 5 6 7 8 9 10]"
+	got := fmt.Sprintf("%s", a)
 	if expected != got {
 		t.Errorf("shrink error: got %v, expected  %v", got, expected)
 	}
