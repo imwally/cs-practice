@@ -2,6 +2,7 @@ package array
 
 import (
 	"fmt"
+	"reflect"
 	"testing"
 )
 
@@ -113,5 +114,12 @@ func TestString(t *testing.T) {
 	got := fmt.Sprintf("%s", a)
 	if expected != got {
 		t.Errorf("shrink error: got %v, expected  %v", got, expected)
+	}
+}
+
+func TestNew(t *testing.T) {
+	a := New()
+	if reflect.ValueOf(a).Kind() != reflect.Ptr {
+		t.Errorf("new error: didn't return pointer")
 	}
 }
