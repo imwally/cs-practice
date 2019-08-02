@@ -1,6 +1,4 @@
-package main
-
-import "fmt"
+package bst
 
 type Node struct {
 	Value int
@@ -30,14 +28,4 @@ func (n *Node) Insert(v int) {
 			current = current.Right
 		}
 	}
-}
-
-func main() {
-	bst := New(10)
-	bst.Insert(8)
-	bst.Insert(11)
-
-	fmt.Println(bst.Value)
-	fmt.Println(bst.Left.Value)
-	fmt.Println(bst.Right.Value)
 }
