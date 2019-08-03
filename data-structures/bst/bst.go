@@ -29,3 +29,21 @@ func (n *Node) Insert(v int) {
 		}
 	}
 }
+
+func (n *Node) Find(v int) *Node {
+	for current := n; current != nil; {
+		if v < current.Value {
+			if current.Left.Value == v {
+				return current.Left
+			}
+			current = current.Left
+		} else {
+			if current.Right.Value == v {
+				return current.Right
+			}
+			current = current.Right
+		}
+	}
+
+	return nil
+}
