@@ -28,16 +28,18 @@ func TestInsert(t *testing.T) {
 
 func TestFind(t *testing.T) {
 	root := New(10)
-	root.Insert(8)
-	root.Insert(12)
-	root.Insert(100)
-	root.Insert(1)
-	root.Insert(45)
-	root.Insert(6)
 
-	expected := 100
-	got := root.Find(100).Value
-	if got != expected {
-		t.Errorf("find error: got %v, expected %v", got, expected)
+	values := []int{8, 12, 100, 1, 45, 6}
+
+	for _, v := range values {
+		root.Insert(v)
+	}
+
+	for _, v := range values {
+		expected := v
+		got := root.Find(v).Value
+		if got != expected {
+			t.Errorf("find error: got %v, expected %v", got, expected)
+		}
 	}
 }
