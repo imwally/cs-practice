@@ -42,4 +42,10 @@ func TestFind(t *testing.T) {
 			t.Errorf("find error: got %v, expected %v", got, expected)
 		}
 	}
+
+	got := root.Find(99)
+	if got != nil {
+		t.Errorf("find error: got %v, expected nil", got)
+	}
+
 }
