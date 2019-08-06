@@ -4,8 +4,12 @@ import "testing"
 
 func TestInsert(t *testing.T) {
 	root := New(10)
-	root.Insert(8)
-	root.Insert(12)
+
+	values := []int{8, 12, 100, 1, 45, 6}
+
+	for _, v := range values {
+		root.Insert(v)
+	}
 
 	expected := 10
 	got := root.Value
@@ -21,6 +25,30 @@ func TestInsert(t *testing.T) {
 
 	expected = 12
 	got = root.Right.Value
+	if got != expected {
+		t.Errorf("insert error: got %v, expected %v", got, expected)
+	}
+
+	expected = 100
+	got = root.Right.Right.Value
+	if got != expected {
+		t.Errorf("insert error: got %v, expected %v", got, expected)
+	}
+
+	expected = 1
+	got = root.Left.Left.Value
+	if got != expected {
+		t.Errorf("insert error: got %v, expected %v", got, expected)
+	}
+
+	expected = 45
+	got = root.Right.Right.Left.Value
+	if got != expected {
+		t.Errorf("insert error: got %v, expected %v", got, expected)
+	}
+
+	expected = 6
+	got = root.Left.Left.Right.Value
 	if got != expected {
 		t.Errorf("insert error: got %v, expected %v", got, expected)
 	}
