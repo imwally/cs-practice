@@ -1,5 +1,7 @@
 package bst
 
+import "fmt"
+
 type Node struct {
 	Value int
 	Left  *Node
@@ -43,4 +45,15 @@ func (n *Node) Find(v int) *Node {
 	}
 
 	return nil
+}
+
+func PrintPreOrder(n *Node) {
+	if n == nil {
+		return
+	}
+
+	fmt.Println(n.Value)
+
+	PrintPreOrder(n.Left)
+	PrintPreOrder(n.Right)
 }

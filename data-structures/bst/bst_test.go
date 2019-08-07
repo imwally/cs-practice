@@ -77,3 +77,14 @@ func TestFind(t *testing.T) {
 	}
 
 }
+
+func TestPrintPreOrder(t *testing.T) {
+	root := New(10)
+
+	values := []int{8, 12, 100, 1, 45, 6}
+	for _, v := range values {
+		root.Insert(v)
+	}
+
+	PrintPreOrder(root)
+}
