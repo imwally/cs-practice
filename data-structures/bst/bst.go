@@ -57,3 +57,13 @@ func PrintPreOrder(n *Node) {
 	PrintPreOrder(n.Left)
 	PrintPreOrder(n.Right)
 }
+
+func PrintInOrder(n *Node) {
+	if n == nil {
+		return
+	}
+
+	PrintInOrder(n.Left)
+	fmt.Println(n.Value)
+	PrintInOrder(n.Right)
+}

@@ -88,3 +88,16 @@ func TestPrintPreOrder(t *testing.T) {
 
 	PrintPreOrder(root)
 }
+
+func TestPrintInOrder(t *testing.T) {
+	root := New(10)
+
+	values := []int{8, 12, 100, 1, 45, 6}
+	for _, v := range values {
+		root.Insert(v)
+	}
+
+	answers := []int{1, 6, 8, 10, 12, 45, 100}
+
+	PrintInOrder(root)
+}
