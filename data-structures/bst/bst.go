@@ -1,6 +1,9 @@
 package bst
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 type Node struct {
 	Value int
@@ -47,23 +50,46 @@ func (n *Node) Find(v int) *Node {
 	return nil
 }
 
-func PrintPreOrder(n *Node) {
+func printPre(n *Node, s string) string {
 	if n == nil {
-		return
+		return ""
 	}
 
-	fmt.Println(n.Value)
+	s += fmt.Sprintf("%d ", n.Value)
 
-	PrintPreOrder(n.Left)
-	PrintPreOrder(n.Right)
+	if n.Left != nil {
+		s = printPre(n.Left, s)
+	}
+
+	if n.Right != nil {
+		s = printPre(n.Right, s)
+	}
+
+	return s
 }
 
-func PrintInOrder(n *Node) {
+func PrintPreOrder(n *Node, s string) string {
+	return strings.TrimRight(printPre(n, s), " ")
+}
+
+func printIn(n *Node, s string) string {
 	if n == nil {
-		return
+		return ""
 	}
 
-	PrintInOrder(n.Left)
-	fmt.Println(n.Value)
-	PrintInOrder(n.Right)
+	if n.Left != nil {
+		s = printIn(n.Left, s)
+	}
+
+	s += fmt.Sprintf("%d ", n.Value)
+
+	if n.Right != nil {
+		s = printIn(n.Right, s)
+	}
+
+	return s
+}
+
+func PrintInOrder(n *Node, s string) string {
+	return strings.TrimRight(printIn(n, s), " ")
 }
