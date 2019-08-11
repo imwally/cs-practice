@@ -94,7 +94,7 @@ func TestPreOrder(t *testing.T) {
 	}
 }
 
-func TestPrintInOrder(t *testing.T) {
+func TestInOrder(t *testing.T) {
 	root := New(10)
 
 	values := []int{8, 12, 100, 1, 45, 6}
