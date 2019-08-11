@@ -78,7 +78,7 @@ func TestFind(t *testing.T) {
 
 }
 
-func TestPrintPreOrder(t *testing.T) {
+func TestPreOrder(t *testing.T) {
 	root := New(10)
 
 	values := []int{8, 12, 100, 1, 45, 6}
@@ -86,10 +86,11 @@ func TestPrintPreOrder(t *testing.T) {
 		root.Insert(v)
 	}
 
-	expected := "10 8 1 6 12 100 45"
-	got := PrintPreOrder(root)
-	if got != expected {
-		t.Errorf("insert error: got %v, expected %v", got, expected)
+	expected := []int{10, 8, 1, 6, 12, 100, 45}
+	for i, got := range PreOrder(root) {
+		if got != expected[i] {
+			t.Errorf("insert error: got %v, expected %v", got, expected[i])
+		}
 	}
 }
 
@@ -101,9 +102,10 @@ func TestPrintInOrder(t *testing.T) {
 		root.Insert(v)
 	}
 
-	expected := "1 6 8 10 12 45 100"
-	got := PrintInOrder(root)
-	if got != expected {
-		t.Errorf("insert error: got %v, expected %v", got, expected)
+	expected := []int{1, 6, 8, 10, 12, 45, 100}
+	for i, got := range InOrder(root) {
+		if got != expected[i] {
+			t.Errorf("insert error: got %v, expected %v", got, expected[i])
+		}
 	}
 }

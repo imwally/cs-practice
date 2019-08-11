@@ -1,10 +1,5 @@
 package bst
 
-import (
-	"fmt"
-	"strings"
-)
-
 type Node struct {
 	Value int
 	Left  *Node
@@ -50,46 +45,48 @@ func (n *Node) Find(v int) *Node {
 	return nil
 }
 
-func printPre(n *Node, s string) string {
+func preOrder(n *Node, s []interface{}) []interface{} {
 	if n == nil {
-		return ""
+		return nil
 	}
 
-	s += fmt.Sprintf("%d ", n.Value)
+	s = append(s, n.Value)
 
 	if n.Left != nil {
-		s = printPre(n.Left, s)
+		s = preOrder(n.Left, s)
 	}
 
 	if n.Right != nil {
-		s = printPre(n.Right, s)
+		s = preOrder(n.Right, s)
 	}
 
 	return s
 }
 
-func PrintPreOrder(n *Node) string {
-	return strings.TrimRight(printPre(n, ""), " ")
+func PreOrder(n *Node) []interface{} {
+	var s []interface{}
+	return preOrder(n, s)
 }
 
-func printIn(n *Node, s string) string {
+func inOrder(n *Node, s []interface{}) []interface{} {
 	if n == nil {
-		return s
+		return nil
 	}
 
 	if n.Left != nil {
-		s = printIn(n.Left, s)
+		s = inOrder(n.Left, s)
 	}
 
-	s += fmt.Sprintf("%d ", n.Value)
+	s = append(s, n.Value)
 
 	if n.Right != nil {
-		s = printIn(n.Right, s)
+		s = inOrder(n.Right, s)
 	}
 
 	return s
 }
 
-func PrintInOrder(n *Node) string {
-	return strings.TrimRight(printIn(n, ""), " ")
+func InOrder(n *Node) []interface{} {
+	var s []interface{}
+	return inOrder(n, s)
 }
