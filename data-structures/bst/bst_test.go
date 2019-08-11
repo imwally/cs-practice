@@ -89,7 +89,7 @@ func TestPreOrder(t *testing.T) {
 	expected := []int{10, 8, 1, 6, 12, 100, 45}
 	for i, got := range PreOrder(root) {
 		if got != expected[i] {
-			t.Errorf("insert error: got %v, expected %v", got, expected[i])
+			t.Errorf("PreOrder error: got %v, expected %v", got, expected[i])
 		}
 	}
 }
@@ -105,7 +105,7 @@ func TestPrintInOrder(t *testing.T) {
 	expected := []int{1, 6, 8, 10, 12, 45, 100}
 	for i, got := range InOrder(root) {
 		if got != expected[i] {
-			t.Errorf("insert error: got %v, expected %v", got, expected[i])
+			t.Errorf("InOrder error: got %v, expected %v", got, expected[i])
 		}
 	}
 }
