@@ -109,3 +109,19 @@ func TestInOrder(t *testing.T) {
 		}
 	}
 }
+
+func TestPostOrder(t *testing.T) {
+	root := New(10)
+
+	values := []int{8, 12, 100, 1, 45, 6}
+	for _, v := range values {
+		root.Insert(v)
+	}
+
+	expected := []int{6, 1, 8, 45, 100, 12, 10}
+	for i, got := range PostOrder(root) {
+		if got != expected[i] {
+			t.Errorf("PostOrder error: got %v, expected %v", got, expected[i])
+		}
+	}
+}

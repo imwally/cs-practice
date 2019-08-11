@@ -90,3 +90,26 @@ func InOrder(n *Node) []interface{} {
 	var s []interface{}
 	return inOrder(n, s)
 }
+
+func postOrder(n *Node, s []interface{}) []interface{} {
+	if n == nil {
+		return nil
+	}
+
+	if n.Left != nil {
+		s = postOrder(n.Left, s)
+	}
+
+	if n.Right != nil {
+		s = postOrder(n.Right, s)
+	}
+
+	s = append(s, n.Value)
+
+	return s
+}
+
+func PostOrder(n *Node) []interface{} {
+	var s []interface{}
+	return postOrder(n, s)
+}
