@@ -87,7 +87,7 @@ func TestPrintPreOrder(t *testing.T) {
 	}
 
 	expected := "10 8 1 6 12 100 45"
-	got := PrintPreOrder(root, "")
+	got := PrintPreOrder(root)
 	if got != expected {
 		t.Errorf("insert error: got %v, expected %v", got, expected)
 	}
@@ -102,7 +102,7 @@ func TestPrintInOrder(t *testing.T) {
 	}
 
 	expected := "1 6 8 10 12 45 100"
-	got := PrintInOrder(root, "")
+	got := PrintInOrder(root)
 	if got != expected {
 		t.Errorf("insert error: got %v, expected %v", got, expected)
 	}

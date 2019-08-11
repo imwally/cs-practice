@@ -68,13 +68,13 @@ func printPre(n *Node, s string) string {
 	return s
 }
 
-func PrintPreOrder(n *Node, s string) string {
-	return strings.TrimRight(printPre(n, s), " ")
+func PrintPreOrder(n *Node) string {
+	return strings.TrimRight(printPre(n, ""), " ")
 }
 
 func printIn(n *Node, s string) string {
 	if n == nil {
-		return ""
+		return s
 	}
 
 	if n.Left != nil {
@@ -90,6 +90,6 @@ func printIn(n *Node, s string) string {
 	return s
 }
 
-func PrintInOrder(n *Node, s string) string {
-	return strings.TrimRight(printIn(n, s), " ")
+func PrintInOrder(n *Node) string {
+	return strings.TrimRight(printIn(n, ""), " ")
 }
