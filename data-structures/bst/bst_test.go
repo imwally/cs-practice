@@ -125,3 +125,19 @@ func TestPostOrder(t *testing.T) {
 		}
 	}
 }
+
+func TestOutOrder(t *testing.T) {
+	root := New(10)
+
+	values := []int{8, 12, 100, 1, 45, 6}
+	for _, v := range values {
+		root.Insert(v)
+	}
+
+	expected := []int{100, 45, 12, 10, 8, 6, 1}
+	for i, got := range OutOrder(root) {
+		if got != expected[i] {
+			t.Errorf("OutOrder error: got %v, expected %v", got, expected[i])
+		}
+	}
+}
