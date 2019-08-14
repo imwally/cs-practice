@@ -1,6 +1,9 @@
 package queue
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestEnqueue(t *testing.T) {
 	q := New()
@@ -48,5 +51,20 @@ func TestLength(t *testing.T) {
 
 	if got != expected {
 		t.Errorf("Length error: got %v, expected %v", got, expected)
+	}
+}
+
+func TestString(t *testing.T) {
+	q := New()
+
+	for i := 1; i <= 10; i++ {
+		q.Enqueue(i)
+	}
+
+	expected := "10, 9, 8, 7, 6, 5, 4, 3, 2, 1"
+	got := fmt.Sprintf("%s", q)
+
+	if got != expected {
+		t.Errorf("String error: got %v, expected %v", got, expected)
 	}
 }
