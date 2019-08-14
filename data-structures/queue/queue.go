@@ -1,4 +1,4 @@
-package main
+package queue
 
 import "fmt"
 
@@ -38,25 +38,6 @@ func (q Queue) String() string {
 	return str[:len(str)-2]
 }
 
-func main() {
-	q := new(Queue)
-	q.Enqueue(1)
-	fmt.Println(q)
-	q.Enqueue(2)
-	fmt.Println(q)
-	q.Enqueue(3)
-	fmt.Println(q)
-	q.Enqueue("Four")
-	fmt.Println(q)
-
-	fmt.Println(q.Dequeue())
-	fmt.Println(q)
-	fmt.Println(q.Dequeue())
-	fmt.Println(q)
-	fmt.Println(q.Dequeue())
-	fmt.Println(q)
-	fmt.Println(q.Dequeue())
-	fmt.Println(q)
-	fmt.Println(q.Dequeue())
-	fmt.Println(q.Dequeue())
+func New() *Queue {
+	return new(Queue)
 }
