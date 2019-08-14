@@ -9,9 +9,9 @@ func TestEnqueue(t *testing.T) {
 		q.Enqueue(i)
 	}
 
-	for i := 1; i <= 10; i++ {
-		expected := i
-		got := q.Dequeue()
+	for i, v := range q.Storage {
+		expected := i + 1
+		got := v
 
 		if got != expected {
 			t.Errorf("Enqueue error: got %v, expected %v", got, expected)
