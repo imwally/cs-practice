@@ -35,3 +35,18 @@ func TestDequeue(t *testing.T) {
 		}
 	}
 }
+
+func TestLength(t *testing.T) {
+	q := New()
+
+	for i := 1; i <= 10; i++ {
+		q.Enqueue(i)
+	}
+
+	expected := 10
+	got := q.Length()
+
+	if got != expected {
+		t.Errorf("Length error: got %v, expected %v", got, expected)
+	}
+}
