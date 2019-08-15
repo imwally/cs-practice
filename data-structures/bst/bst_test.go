@@ -141,3 +141,19 @@ func TestOutOrder(t *testing.T) {
 		}
 	}
 }
+
+func TestBFSOrder(t *testing.T) {
+	root := New(10)
+
+	values := []int{8, 12, 9, 100, 6, 45, 101, 1, 7}
+	for _, v := range values {
+		root.Insert(v)
+	}
+
+	expected := []int{10, 8, 12, 6, 9, 100, 1, 7, 45, 101}
+	for i, got := range BFSOrder(root) {
+		if got != expected[i] {
+			t.Errorf("BFSOrder error: got %v, expected %v", got, expected[i])
+		}
+	}
+}

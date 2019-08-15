@@ -1,5 +1,7 @@
 package bst
 
+import queue "../queue"
+
 type Node struct {
 	Value int
 	Left  *Node
@@ -135,4 +137,26 @@ func outOrder(n *Node, s []interface{}) []interface{} {
 func OutOrder(n *Node) []interface{} {
 	var s []interface{}
 	return outOrder(n, s)
+}
+
+func BFSOrder(n *Node) []interface{} {
+	var s []interface{}
+
+	q := queue.New()
+	q.Enqueue(n)
+
+	for q.Length() > 0 {
+		node := q.Dequeue()
+
+		s = append(s, node.(*Node).Value)
+
+		if node.(*Node).Left != nil {
+			q.Enqueue(node.(*Node).Left)
+		}
+		if node.(*Node).Right != nil {
+			q.Enqueue(node.(*Node).Right)
+		}
+	}
+
+	return s
 }
