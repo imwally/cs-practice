@@ -29,20 +29,18 @@ func MergeSort(s []int) []int {
 	}
 
 	mid := int(len(s) / 2)
-	a := s[:mid]
-	b := s[mid:]
 
-	return Merge(MergeSort(a), MergeSort(b))
+	return Merge(MergeSort(s[:mid]), MergeSort(s[mid:]))
 }
 
 func TestMergeSort(t *testing.T) {
 	var usort []int
-	for i := 100; i > 0; i-- {
+	for i := 1000; i > 0; i-- {
 		usort = append(usort, i)
 	}
 
 	sorted := MergeSort(usort)
-	for i := 0; i < 100; i++ {
+	for i := 0; i < 1000; i++ {
 		expected := i + 1
 		got := sorted[i]
 
