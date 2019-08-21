@@ -7,10 +7,16 @@ func swap(s []int, i, j int) {
 }
 
 func BubbleSort(s []int) {
+	var swapped bool
 	for i := 0; i < len(s)-1; {
 		if s[i+1] < s[i] {
 			swap(s, i, i+1)
+			swapped = true
+		}
+
+		if i+1 == len(s)-1 && swapped {
 			i = 0
+			swapped = false
 		} else {
 			i++
 		}
