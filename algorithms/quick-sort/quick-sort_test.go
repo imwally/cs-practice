@@ -1,9 +1,6 @@
 package main
 
-import (
-	"fmt"
-	"testing"
-)
+import "testing"
 
 func swap(s []int, i, j int) {
 	s[i], s[j] = s[j], s[i]
@@ -27,7 +24,6 @@ func partition(s []int, lo, hi int) int {
 }
 
 func quickSort(s []int, lo, hi int) {
-	fmt.Println(s)
 	if lo < hi {
 		p := partition(s, lo, hi)
 		quickSort(s, lo, p-1)
@@ -42,13 +38,13 @@ func QuickSort(s []int) {
 func TestQuickSort(t *testing.T) {
 	var s []int
 
-	for i := 6; i > 0; i-- {
+	for i := 10000; i > 0; i-- {
 		s = append(s, i)
 	}
 
 	QuickSort(s)
 
-	for i := 0; i < 6; i++ {
+	for i := 0; i < 10000; i++ {
 		expected := i + 1
 		got := s[i]
 
