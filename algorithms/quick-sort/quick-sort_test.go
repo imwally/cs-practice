@@ -7,9 +7,7 @@ func swap(s []int, i, j int) {
 }
 
 func partition(s []int, lo, hi int) int {
-
 	pivot := s[hi]
-
 	i, j := lo, hi
 	for i < hi {
 		if s[i] > pivot {
