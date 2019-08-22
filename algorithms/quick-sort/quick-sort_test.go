@@ -33,15 +33,15 @@ func QuickSort(s []int) {
 }
 
 func TestQuickSort(t *testing.T) {
+	size := 10000
 	var s []int
-
-	for i := 10000; i > 0; i-- {
+	for i := size; i > 0; i-- {
 		s = append(s, i)
 	}
 
 	QuickSort(s)
 
-	for i := 0; i < 10000; i++ {
+	for i := 0; i < size; i++ {
 		expected := i + 1
 		got := s[i]
 
