@@ -13,7 +13,6 @@ func partition(s []int, lo, hi int) int {
 		if s[i] > pivot {
 			swap(s, i, j)
 			j = i
-
 		}
 		i++
 	}
