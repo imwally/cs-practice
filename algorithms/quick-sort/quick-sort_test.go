@@ -7,23 +7,34 @@ func swap(s []int, i, j int) {
 }
 
 func partition(s []int, lo, hi int) int {
-	pivot := s[hi]
-	i, j := lo, hi
-	for i < hi {
-		if s[i] > pivot {
-			swap(s, i, j)
-			j = i
+	p := s[lo+(hi-lo)/2]
+
+	for {
+		for s[lo] < p {
+			lo++
 		}
-		i++
+
+		for s[hi] > p {
+			hi--
+		}
+
+		if lo >= hi {
+			return hi
+		}
+
+		swap(s, lo, hi)
+
+		lo++
+		hi--
 	}
 
-	return i
+	return 0
 }
 
 func quickSort(s []int, lo, hi int) {
 	if lo < hi {
 		p := partition(s, lo, hi)
-		quickSort(s, lo, p-1)
+		quickSort(s, lo, p)
 		quickSort(s, p+1, hi)
 	}
 }
