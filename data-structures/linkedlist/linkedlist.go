@@ -41,12 +41,6 @@ func (l *LinkedList) Insert(at int, v interface{}) {
 		return
 	}
 
-	if at == l.Size() {
-		node := &Node{v, nil}
-		l.Tail.Next = node
-		l.Tail = node
-	}
-
 	last := l.Head
 	for i, current := 0, l.Head; current != nil; i, current = i+1, current.Next {
 		if i == at {
