@@ -34,6 +34,29 @@ func (l *LinkedList) Append(v interface{}) {
 	l.Tail = node
 }
 
+func (l *LinkedList) Insert(at int, v interface{}) {
+	if at == 0 {
+		node := &Node{v, l.Head}
+		l.Head = node
+		return
+	}
+
+	if at == l.Size() {
+		node := &Node{v, nil}
+		l.Tail.Next = node
+		l.Tail = node
+	}
+
+	last := l.Head
+	for i, current := 0, l.Head; current != nil; i, current = i+1, current.Next {
+		if i == at {
+			last.Next = &Node{v, last.Next}
+			return
+		}
+		last = current
+	}
+}
+
 func (l *LinkedList) String() string {
 	var list string
 	for current := l.Head; current != nil; current = current.Next {

@@ -28,6 +28,22 @@ func TestAppend(t *testing.T) {
 	}
 }
 
+func TestInsert(t *testing.T) {
+	l := new(LinkedList)
+
+	for i := 1; i < 5; i++ {
+		l.Append(i)
+	}
+
+	l.Insert(0, 10)
+
+	printed := fmt.Sprintf("%s", l)
+	expected := "10 -> 1 -> 2 -> 3 -> 4"
+	if printed != expected {
+		t.Errorf("String failed: expected \"%s\", got \"%s\"", expected, printed)
+	}
+}
+
 func TestString(t *testing.T) {
 	l := new(LinkedList)
 
