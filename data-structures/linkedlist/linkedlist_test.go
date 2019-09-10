@@ -40,7 +40,11 @@ func TestInsert(t *testing.T) {
 	printed := fmt.Sprintf("%s", l)
 	expected := "10 -> 1 -> 2 -> 3 -> 4"
 	if printed != expected {
-		t.Errorf("String failed: expected \"%s\", got \"%s\"", expected, printed)
+		t.Errorf("Insert failed: expected \"%s\", got \"%s\"", expected, printed)
+	}
+
+	if l.Head.Value != 10 {
+		t.Errorf("Insert failed: expected \"%v\", got \"%v\"", 10, l.Head.Value)
 	}
 }
 
