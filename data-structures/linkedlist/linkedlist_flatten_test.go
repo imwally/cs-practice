@@ -18,26 +18,29 @@ func Merge(a, b *LinkedList) *LinkedList {
 	ac := a.Head
 	bc := b.Head
 
-	for ac != nil || bc != nil {
-		if ac == nil {
-			merged.Append(bc.Value)
-			bc = bc.Next
-			continue
-		}
-		if bc == nil {
-			merged.Append(ac.Value)
-			ac = ac.Next
-			continue
-		}
+        // Merge lists in order
+	for ac != nil && bc != nil {
 		if ac.Value.(int) <= bc.Value.(int) {
 			merged.Append(ac.Value)
 			ac = ac.Next
-			continue
 		} else {
 			merged.Append(bc.Value)
 			bc = bc.Next
 		}
 	}
+
+        // Add remaining elements from b list
+        for bc != nil {
+                merged.Append(bc.Value)
+                bc = bc.Next
+        }
+
+        // Add remaining elements from a list
+        for ac != nil {
+                merged.Append(ac.Value)
+                ac = ac.Next
+        }
+
 
 	return merged
 }
