@@ -5,7 +5,49 @@ import (
 	"testing"
 )
 
+func Merge(a, b *LinkedList) *LinkedList {
+	merged := &LinkedList{}
+	if a == nil {
+		return b
+	}
+
+	if b == nil {
+		return a
+	}
+
+	ac := a.Head
+	bc := b.Head
+
+	for ac != nil || bc != nil {
+		if ac == nil {
+			merged.Append(bc.Value)
+			bc = bc.Next
+			continue
+		}
+		if bc == nil {
+			merged.Append(ac.Value)
+			ac = ac.Next
+			continue
+		}
+		if ac.Value.(int) <= bc.Value.(int) {
+			merged.Append(ac.Value)
+			ac = ac.Next
+			continue
+		} else {
+			merged.Append(bc.Value)
+			bc = bc.Next
+		}
+	}
+
+	return merged
+}
+
 func TestFlatten(t *testing.T) {
+	lld := &LinkedList{}
+	lld.Append(1)
+	lld.Append(2)
+	lld.Append(3)
+
 	llc := &LinkedList{}
 	llc.Append(4)
 	llc.Append(5)
@@ -16,14 +58,11 @@ func TestFlatten(t *testing.T) {
 	llb.Append(8)
 	llb.Append(9)
 
-	lla := &LinkedList{}
-	lla.Append(1)
-	lla.Append(llb)
-	lla.Append(2)
-	lla.Append(llc)
-	lla.Append(3)
+	m := Merge(Merge(llb, llc), lld)
 
-	for current := lla.Head; current != nil; current = current.Next {
-		fmt.Println(current.Value)
+	got := fmt.Sprintf("%s", m)
+	expected := "1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9"
+	if got != expected {
+		t.Errorf("Flatten error: got %v, expected %v", got, expected)
 	}
 }
