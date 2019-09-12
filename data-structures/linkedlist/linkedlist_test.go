@@ -68,6 +68,22 @@ func TestInsert(t *testing.T) {
 	if l.Tail.Value != 100 {
 		t.Errorf("Insert failed: expected \"%v\", got \"%v\"", 100, l.Tail.Value)
 	}
+
+	l.Insert(2, 99)
+
+	printed = fmt.Sprintf("%s", l)
+	expected = "10 -> 1 -> 99 -> 2 -> 3 -> 11 -> 4 -> 100"
+	if printed != expected {
+		t.Errorf("Insert failed: expected \"%s\", got \"%s\"", expected, printed)
+	}
+
+	if l.Head.Value != 10 {
+		t.Errorf("Insert failed: expected \"%v\", got \"%v\"", 10, l.Head.Value)
+	}
+
+	if l.Tail.Value != 100 {
+		t.Errorf("Insert failed: expected \"%v\", got \"%v\"", 100, l.Tail.Value)
+	}
 }
 
 func TestString(t *testing.T) {
