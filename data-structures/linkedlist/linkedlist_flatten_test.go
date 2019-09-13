@@ -53,10 +53,17 @@ func Flatten(n *Node) *LinkedList {
 }
 
 func TestFlatten(t *testing.T) {
+	lle := &LinkedList{}
+	lle.Append(11)
+	lle.Append(12)
+	lle.Append(13)
+	lle.Append(14)
+
 	lld := &LinkedList{}
 	lld.Append(1)
 	lld.Append(2)
 	lld.Append(3)
+	lld.Append(10)
 
 	llc := &LinkedList{}
 	llc.Append(4)
@@ -72,11 +79,12 @@ func TestFlatten(t *testing.T) {
 	lla.Append(llb)
 	lla.Append(llc)
 	lla.Append(lld)
+	lla.Append(lle)
 
 	flat := Flatten(lla.Head)
 
 	got := fmt.Sprintf("%s", flat)
-	expected := "1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9"
+	expected := "1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> 11 -> 12 -> 13 -> 14"
 	if got != expected {
 		t.Errorf("Flatten error: got %v, expected %v", got, expected)
 	}
