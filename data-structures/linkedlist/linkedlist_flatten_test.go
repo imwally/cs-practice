@@ -55,7 +55,7 @@ func flatten(n *Node) *LinkedList {
 }
 
 func Flatten(ll *LinkedList) *LinkedList {
-	if reflect.TypeOf(ll.Head.Value).String() != "*LinkedList" {
+	if reflect.TypeOf(ll.Head.Value).String() != "*linkedlist.LinkedList" {
 		return ll
 	}
 
