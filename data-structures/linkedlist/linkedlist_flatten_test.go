@@ -2,11 +2,11 @@ package linkedlist
 
 import (
 	"fmt"
+	"reflect"
 	"testing"
 )
 
 func Merge(a, b *LinkedList) *LinkedList {
-	merged := &LinkedList{}
 	if a == nil {
 		return b
 	}
@@ -19,6 +19,7 @@ func Merge(a, b *LinkedList) *LinkedList {
 	bc := b.Head
 
 	// Merge lists in order
+	merged := &LinkedList{}
 	for ac != nil && bc != nil {
 		if ac.Value.(int) <= bc.Value.(int) {
 			merged.Append(ac.Value)
@@ -44,12 +45,21 @@ func Merge(a, b *LinkedList) *LinkedList {
 	return merged
 }
 
-func Flatten(n *Node) *LinkedList {
+func flatten(n *Node) *LinkedList {
+	ll := n.Value.(*LinkedList)
 	if n.Next == nil {
-		return Merge(n.Value.(*LinkedList), nil)
+		return Merge(ll, nil)
 	}
 
-	return Merge(n.Value.(*LinkedList), Flatten(n.Next))
+	return Merge(ll, flatten(n.Next))
+}
+
+func Flatten(ll *LinkedList) *LinkedList {
+	if reflect.TypeOf(ll.Head.Value).String() != "*LinkedList" {
+		return ll
+	}
+
+	return flatten(ll.Head)
 }
 
 func TestFlatten(t *testing.T) {
@@ -81,11 +91,20 @@ func TestFlatten(t *testing.T) {
 	lla.Append(lld)
 	lla.Append(lle)
 
-	flat := Flatten(lla.Head)
+	flat := Flatten(lla)
 
 	got := fmt.Sprintf("%s", flat)
 	expected := "1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> 11 -> 12 -> 13 -> 14"
 	if got != expected {
 		t.Errorf("Flatten error: got %v, expected %v", got, expected)
 	}
+
+	flat = Flatten(lld)
+
+	got = fmt.Sprintf("%s", flat)
+	expected = "1 -> 2 -> 3 -> 10"
+	if got != expected {
+		t.Errorf("Flatten error: got %v, expected %v", got, expected)
+	}
+
 }
