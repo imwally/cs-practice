@@ -91,20 +91,15 @@ func TestFlatten(t *testing.T) {
 	lla.Append(lld)
 	lla.Append(lle)
 
-	flat := Flatten(lla)
-
-	got := fmt.Sprintf("%s", flat)
+	got := fmt.Sprintf("%s", Flatten(lla))
 	expected := "1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> 11 -> 12 -> 13 -> 14"
 	if got != expected {
 		t.Errorf("Flatten error: got %v, expected %v", got, expected)
 	}
 
-	flat = Flatten(lld)
-
-	got = fmt.Sprintf("%s", flat)
+	got = fmt.Sprintf("%s", Flatten(lld))
 	expected = "1 -> 2 -> 3 -> 10"
 	if got != expected {
 		t.Errorf("Flatten error: got %v, expected %v", got, expected)
 	}
-
 }
