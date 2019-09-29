@@ -1,12 +1,15 @@
 package main
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func InsertionSort(s []int) {
 	// Loop over every item in the slice
 	for i := 0; i < len(s); i++ {
-		// Starting at the i'th element, if the i-1 element is larger,
-		// swap them
+		// Starting at the i'th element and working backwards, if the
+		// i-1 element is larger, swap them
 		for j := i; j > 0 && s[j-1] > s[j]; j-- {
 			s[j], s[j-1] = s[j-1], s[j]
 		}
