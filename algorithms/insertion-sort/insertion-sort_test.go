@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"math/rand"
 	"testing"
 )
 
@@ -17,9 +17,13 @@ func InsertionSort(s []int) {
 }
 
 func TestInsertionSort(t *testing.T) {
-	s := []int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1}
+	s := rand.Perm(100)
 
-	expected := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	expected := make([]int, 100)
+	for i, _ := range s {
+		expected[i] = i
+	}
+
 	InsertionSort(s)
 
 	for i, v := range s {
