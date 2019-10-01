@@ -1,6 +1,9 @@
 package main
 
-import "testing"
+import (
+	"math/rand"
+	"testing"
+)
 
 func swap(s []int, i, j int) {
 	s[i], s[j] = s[j], s[i]
@@ -24,10 +27,9 @@ func BubbleSort(s []int) {
 }
 
 func TestBubbleSort(t *testing.T) {
-	var s []int
-
-	for i := 1000; i > 0; i-- {
-		s = append(s, i)
+	s := rand.Perm(1000)
+	for i, _ := range s {
+		s[i]++
 	}
 
 	BubbleSort(s)
