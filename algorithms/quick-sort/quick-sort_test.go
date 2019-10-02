@@ -1,6 +1,7 @@
 package main
 
 import (
+	"math/rand"
 	"testing"
 )
 
@@ -64,10 +65,9 @@ func QuickSort(s []int) {
 
 func TestQuickSort(t *testing.T) {
 	size := 10000
-
-	var s []int
-	for i := size; i > 0; i-- {
-		s = append(s, i)
+	s := rand.Perm(size)
+	for i := 0; i < size; i++ {
+		s[i]++
 	}
 
 	QuickSort(s)
