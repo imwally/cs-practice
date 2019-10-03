@@ -1,6 +1,9 @@
 package main
 
-import "testing"
+import (
+	"math/rand"
+	"testing"
+)
 
 func Merge(a, b []int) []int {
 	merged := make([]int, len(a)+len(b))
@@ -34,13 +37,14 @@ func MergeSort(s []int) []int {
 }
 
 func TestMergeSort(t *testing.T) {
-	var usort []int
-	for i := 1000; i > 0; i-- {
-		usort = append(usort, i)
+	size := 10000
+	s := rand.Perm(size)
+	for i := 0; i < size; i++ {
+		s[i]++
 	}
 
-	sorted := MergeSort(usort)
-	for i := 0; i < 1000; i++ {
+	sorted := MergeSort(s)
+	for i := 0; i < size; i++ {
 		expected := i + 1
 		got := sorted[i]
 
