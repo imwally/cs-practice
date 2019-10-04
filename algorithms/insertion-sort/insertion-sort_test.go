@@ -17,9 +17,10 @@ func InsertionSort(s []int) {
 }
 
 func TestInsertionSort(t *testing.T) {
-	s := rand.Perm(100)
+	size := 1000
+	s := rand.Perm(size)
 
-	expected := make([]int, 100)
+	expected := make([]int, size)
 	for i, _ := range s {
 		expected[i] = i
 	}
