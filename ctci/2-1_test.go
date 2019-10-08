@@ -27,12 +27,13 @@ func TestKthToLast(t *testing.T) {
 		ll.Append(i)
 	}
 
-	got, err := KthToLast(ll, 11)
+	got, err := KthToLast(ll, 1)
 	if err != nil {
 		t.Error(err)
 	}
 
-	if got != 2 {
-		t.Errorf("error: expected 2, got %d\n", got)
+	expected := 9
+	if got != expected {
+		t.Errorf("error: expected %d, got %d\n", expected, got)
 	}
 }
