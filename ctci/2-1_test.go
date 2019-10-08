@@ -1,7 +1,7 @@
 package main
 
 import (
-	"errors"
+	"fmt"
 	"testing"
 
 	"../data-structures/linkedlist"
@@ -9,7 +9,7 @@ import (
 
 func KthToLast(ll *linkedlist.LinkedList, k int) (int, error) {
 	if k < 0 || k > ll.Size()-1 {
-		return 0, errors.New("error: %d out of bounds")
+		return 0, fmt.Errorf("error: %d out of bounds", k)
 	}
 
 	current := ll.Head
@@ -21,14 +21,13 @@ func KthToLast(ll *linkedlist.LinkedList, k int) (int, error) {
 }
 
 func TestKthToLast(t *testing.T) {
-	l := &linkedlist.LinkedList{}
+	ll := &linkedlist.LinkedList{}
 
-	l.Append(1)
-	l.Append(2)
-	l.Append(3)
-	l.Append(4)
+	for i := 1; i <= 10; i++ {
+		ll.Append(i)
+	}
 
-	got, err := KthToLast(l, 2)
+	got, err := KthToLast(ll, 11)
 	if err != nil {
 		t.Error(err)
 	}
