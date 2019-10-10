@@ -36,4 +36,9 @@ func TestKthToLast(t *testing.T) {
 	if got != expected {
 		t.Errorf("error: expected %d, got %d\n", expected, got)
 	}
+
+	got, err = KthToLast(ll, 11)
+	if err == nil {
+		t.Errorf("error: expected out of bounds")
+	}
 }
