@@ -42,6 +42,7 @@ func TestRemoveDups(t *testing.T) {
 	ll.Append(5)
 	ll.Append(5)
 	ll.Append(2)
+	ll.Append(1)
 
 	RemoveDups(ll)
 
