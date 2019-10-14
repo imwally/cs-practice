@@ -45,7 +45,7 @@ func TestRemoveDups(t *testing.T) {
 	ll.Append(1)
 
 	expected := "1 -> 1 -> 2 -> 2 -> 2 -> 3 -> 3 -> 4 -> 1 -> 4 -> 2 -> 5 -> 5 -> 2 -> 1"
-	got := fmt.Sprintf("%s", ll)
+	got := fmt.Sprint(ll)
 
 	if got != expected {
 		t.Errorf("error: got %s, expected %s", got, expected)
@@ -54,7 +54,7 @@ func TestRemoveDups(t *testing.T) {
 	RemoveDups(ll)
 
 	expected = "1 -> 2 -> 3 -> 4 -> 5"
-	got = fmt.Sprintf("%s", ll)
+	got = fmt.Sprint(ll)
 
 	if got != expected {
 		t.Errorf("error: got %s, expected %s", got, expected)
