@@ -52,4 +52,13 @@ func TestRemoveMiddleNode(t *testing.T) {
 	if got != expected {
 		t.Errorf("error: got %s, expected %s", got, expected)
 	}
+
+	RemoveMiddleNode(ll, 1)
+
+	expected = "1 -> 4"
+	got = fmt.Sprint(ll)
+
+	if got != expected {
+		t.Errorf("error: got %s, expected %s", got, expected)
+	}
 }
