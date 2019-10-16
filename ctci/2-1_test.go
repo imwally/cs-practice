@@ -1,4 +1,4 @@
-// Exercise 2.2
+// Exercise 2.1
 //
 // Remove Dups: Write code to remove duplicates from an unsorted li nked list.
 
