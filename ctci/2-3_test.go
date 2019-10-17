@@ -18,15 +18,13 @@ import (
 )
 
 func RemoveMiddleNode(ll *linkedlist.LinkedList, pos int) {
-	i := 0
-	for n := ll.Head; n != nil; n = n.Next {
+	for n, i := ll.Head, 0; n != nil; n, i = n.Next, i+1 {
 		if i >= pos {
 			n.Value = n.Next.Value
 			if n.Next.Next == nil {
 				n.Next = nil
 			}
 		}
-		i++
 	}
 }
 
