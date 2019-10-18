@@ -11,13 +11,18 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"testing"
 
 	"../data-structures/linkedlist"
 )
 
-func RemoveMiddleNode(ll *linkedlist.LinkedList, pos int) {
+func RemoveMiddleNode(ll *linkedlist.LinkedList, pos int) error {
+	if pos == 0 || pos == ll.Size()-1 {
+		return errors.New("index out of bounds")
+	}
+
 	for n, i := ll.Head, 0; n != nil; n, i = n.Next, i+1 {
 		if i >= pos {
 			n.Value = n.Next.Value
@@ -26,6 +31,8 @@ func RemoveMiddleNode(ll *linkedlist.LinkedList, pos int) {
 			}
 		}
 	}
+
+	return nil
 }
 
 func TestRemoveMiddleNode(t *testing.T) {
@@ -42,7 +49,10 @@ func TestRemoveMiddleNode(t *testing.T) {
 		t.Errorf("error: got %s, expected %s", got, expected)
 	}
 
-	RemoveMiddleNode(ll, 1)
+	err := RemoveMiddleNode(ll, 1)
+	if err != nil {
+		t.Error(err)
+	}
 
 	expected = "1 -> 3 -> 4"
 	got = fmt.Sprint(ll)
@@ -51,8 +61,10 @@ func TestRemoveMiddleNode(t *testing.T) {
 		t.Errorf("error: got %s, expected %s", got, expected)
 	}
 
-	RemoveMiddleNode(ll, 1)
-
+	err = RemoveMiddleNode(ll, 1)
+	if err != nil {
+		t.Error(err)
+	}
 	expected = "1 -> 4"
 	got = fmt.Sprint(ll)
 
