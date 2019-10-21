@@ -76,4 +76,10 @@ func TestRemoveMiddleNode(t *testing.T) {
 	if err == nil {
 		t.Errorf("expected error")
 	}
+
+	err = RemoveMiddleNode(ll, 0)
+	if err == nil {
+		t.Errorf("expected error")
+	}
+
 }
