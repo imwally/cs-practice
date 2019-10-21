@@ -56,6 +56,22 @@ func (l *LinkedList) Insert(at int, v interface{}) {
 	}
 }
 
+func (l *LinkedList) Delete(at int) {
+	if at == 0 {
+		l.Head = l.Head.Next
+		return
+	}
+
+	last := l.Head
+	for i, current := 0, l.Head; current != nil; i, current = i+1, current.Next {
+		if i == at {
+			last.Next = current.Next
+			return
+		}
+		last = current
+	}
+}
+
 func (l *LinkedList) String() string {
 	var list string
 	for current := l.Head; current != nil; current = current.Next {

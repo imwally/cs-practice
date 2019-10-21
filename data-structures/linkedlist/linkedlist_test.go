@@ -86,6 +86,31 @@ func TestInsert(t *testing.T) {
 	}
 }
 
+func TestDelete(t *testing.T) {
+	l := new(LinkedList)
+
+	for i := 1; i < 6; i++ {
+		l.Append(i)
+	}
+
+	expected := "1 -> 2 -> 3 -> 4 -> 5"
+	got := fmt.Sprint(l)
+
+	if got != expected {
+		t.Errorf("Delete failed: expected %s, got %s", expected, got)
+	}
+
+	l.Delete(1)
+
+	expected = "1 -> 3 -> 4 -> 5"
+	got = fmt.Sprint(l)
+
+	if got != expected {
+		t.Errorf("Delete failed: expected %s, got %s", expected, got)
+	}
+
+}
+
 func TestString(t *testing.T) {
 	l := new(LinkedList)
 
