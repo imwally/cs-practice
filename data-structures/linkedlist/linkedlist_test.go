@@ -109,6 +109,21 @@ func TestDelete(t *testing.T) {
 		t.Errorf("Delete failed: expected %s, got %s", expected, got)
 	}
 
+	l.Delete(0)
+
+	expected = "3 -> 4 -> 5"
+	got = fmt.Sprint(l)
+
+	if got != expected {
+		t.Errorf("Delete failed: expected %s, got %s", expected, got)
+	}
+
+	expectedHead := 3
+	gotHead := l.Head.Value.(int)
+
+	if gotHead != expectedHead {
+		t.Errorf("Delete failed: expected %v, got %v", expected, got)
+	}
 }
 
 func TestString(t *testing.T) {
