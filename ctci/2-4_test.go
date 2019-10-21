@@ -51,4 +51,10 @@ func TestPartition(t *testing.T) {
 		t.Errorf("error: got %s, expected %s", got, expected)
 	}
 
+	expected = "3 -> 2 -> 1 -> 5 -> 8 -> 5 -> 10"
+	got = fmt.Sprint(Partition(ll, 5))
+
+	if got != expected {
+		t.Errorf("error: got %s, expected %s", got, expected)
+	}
 }
