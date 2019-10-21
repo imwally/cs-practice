@@ -66,6 +66,10 @@ func (l *LinkedList) Delete(at int) {
 	for i, current := 0, l.Head; current != nil; i, current = i+1, current.Next {
 		if i == at {
 			last.Next = current.Next
+			if at == l.Size() {
+				l.Tail = last
+			}
+
 			return
 		}
 		last = current

@@ -122,7 +122,16 @@ func TestDelete(t *testing.T) {
 	gotHead := l.Head.Value.(int)
 
 	if gotHead != expectedHead {
-		t.Errorf("Delete failed: expected %v, got %v", expected, got)
+		t.Errorf("Delete failed: expected %v, got %v", expectedHead, gotHead)
+	}
+
+	l.Delete(2)
+
+	expectedTail := 4
+	gotTail := l.Tail.Value.(int)
+
+	if gotTail != expectedTail {
+		t.Errorf("Delete failed: expected %v, got %v", expectedTail, gotTail)
 	}
 }
 
