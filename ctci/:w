@@ -34,49 +34,46 @@ func Partition(ll *linkedlist.LinkedList, v int) *linkedlist.LinkedList {
 	return newLL
 }
 
+func PartitionInPlace(ll *linkedlist.LinkedList, v int) {
+	for i, c := 0, ll.Head; c != nil; {
+		cv := c.Value
+		fmt.Println(ll, i, cv)
+
+		if c.Value.(int) == v {
+			c = c.Next
+			i++
+			continue
+		}
+
+		c = c.Next
+		ll.Delete(i)
+		fmt.Println(ll)
+		i++
+
+		if cv.(int) > v {
+			ll.Append(cv)
+		} else {
+			ll.Insert(0, cv)
+		}
+	}
+}
+
 func TestPartition(t *testing.T) {
 	ll := &linkedlist.LinkedList{}
+	ll.Append(6)
+	ll.Append(5)
+	ll.Append(4)
 	ll.Append(3)
-	ll.Append(5)
-	ll.Append(8)
-	ll.Append(5)
-	ll.Append(10)
 	ll.Append(2)
 	ll.Append(1)
 
-	expected := "3 -> 5 -> 8 -> 5 -> 10 -> 2 -> 1"
+	expected := "6 -> 5 -> 4 -> 3 -> 2 -> 1"
 	got := fmt.Sprint(ll)
 
 	if got != expected {
 		t.Errorf("error: got %s, expected %s", got, expected)
 	}
 
-	expected = "3 -> 2 -> 1 -> 5 -> 8 -> 5 -> 10"
-	got = fmt.Sprint(Partition(ll, 5))
-
-	if got != expected {
-		t.Errorf("error: got %s, expected %s", got, expected)
-	}
-
-	ll2 := &linkedlist.LinkedList{}
-	ll2.Append(6)
-	ll2.Append(5)
-	ll2.Append(4)
-	ll2.Append(3)
-	ll2.Append(2)
-	ll2.Append(1)
-
-	expected = "6 -> 5 -> 4 -> 3 -> 2 -> 1"
-	got = fmt.Sprint(ll2)
-
-	if got != expected {
-		t.Errorf("error: got %s, expected %s", got, expected)
-	}
-
-	expected = "3 -> 2 -> 1 -> 6 -> 5 -> 4"
-	got = fmt.Sprint(Partition(ll2, 4))
-
-	if got != expected {
-		t.Errorf("error: got %s, expected %s", got, expected)
-	}
+	PartitionInPlace(ll, 4)
+	fmt.Println(ll)
 }
