@@ -127,6 +127,13 @@ func TestDelete(t *testing.T) {
 
 	l.Delete(2)
 
+	expected = "3 -> 4"
+	got = fmt.Sprint(l)
+
+	if got != expected {
+		t.Errorf("Delete failed: expected %s, got %s", expected, got)
+	}
+
 	expectedTail := 4
 	gotTail := l.Tail.Value.(int)
 
