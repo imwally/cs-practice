@@ -41,4 +41,16 @@ func TestPalindrome(t *testing.T) {
 	if got != expected {
 		t.Errorf("Palindrome error: got %v, expected %v", got, expected)
 	}
+
+	ll2 := &linkedlist.LinkedList{}
+	for _, r2 := range "racecar" {
+		ll.Append(int(r2))
+	}
+
+	expected = true
+	got = Palindrome(ll2)
+
+	if got != expected {
+		t.Errorf("Palindrome error: got %v, expected %v", got, expected)
+	}
 }
