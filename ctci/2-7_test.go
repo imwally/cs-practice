@@ -36,26 +36,20 @@ func Intersection(ll1, ll2 *linkedlist.LinkedList) bool {
 func TestIntersection(t *testing.T) {
 	// Construct first linked list from scractch
 	ll1 := &linkedlist.LinkedList{}
-
 	n1 := &linkedlist.Node{1, nil}
 	n2 := &linkedlist.Node{2, nil}
 	n3 := &linkedlist.Node{3, nil}
-
 	n1.Next = n2
 	n2.Next = n3
-
 	ll1.Head = n1
 	ll1.Tail = n3
 
 	// Construct second linked list from scratch
 	ll2 := &linkedlist.LinkedList{}
-
 	n4 := &linkedlist.Node{4, nil}
 	n5 := &linkedlist.Node{5, nil}
-
 	n4.Next = n5
 	n5.Next = n3
-
 	ll2.Head = n4
 	ll2.Tail = n3
 
