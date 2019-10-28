@@ -102,4 +102,16 @@ func TestPalindrome(t *testing.T) {
 		t.Errorf("Palindrome error: got %v, expected %v", got, expected)
 	}
 
+	// Is a single character a palindrome?
+	ll7 := &linkedlist.LinkedList{}
+	for _, r7 := range "a" {
+		ll7.Append(int(r7))
+	}
+
+	expected = true
+	got = Palindrome(ll7)
+
+	if got != expected {
+		t.Errorf("Palindrome error: got %v, expected %v", got, expected)
+	}
 }
