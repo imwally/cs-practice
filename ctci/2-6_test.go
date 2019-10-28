@@ -90,4 +90,16 @@ func TestPalindrome(t *testing.T) {
 		t.Errorf("Palindrome error: got %v, expected %v", got, expected)
 	}
 
+	ll6 := &linkedlist.LinkedList{}
+	for _, r6 := range "aaaa" {
+		ll5.Append(int(r6))
+	}
+
+	expected = true
+	got = Palindrome(ll6)
+
+	if got != expected {
+		t.Errorf("Palindrome error: got %v, expected %v", got, expected)
+	}
+
 }
