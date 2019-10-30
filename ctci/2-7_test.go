@@ -71,4 +71,11 @@ func TestIntersection(t *testing.T) {
 	if got != expected {
 		t.Errorf("Intersection error: got %v, expected %v", got, expected)
 	}
+
+	expected = false
+	got = Intersection(ll2, ll3)
+
+	if got != expected {
+		t.Errorf("Intersection error: got %v, expected %v", got, expected)
+	}
 }
