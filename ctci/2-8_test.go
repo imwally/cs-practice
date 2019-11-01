@@ -45,4 +45,16 @@ func TestLoopDetection(t *testing.T) {
 	if got != expected {
 		t.Errorf("LoopDetection error: got %v, expected %v", got, expected)
 	}
+
+	ll2 := &linkedlist.LinkedList{}
+	for i := 1; i < 6; i++ {
+		ll2.Append(i)
+	}
+
+	expected = nil
+	got = LoopDetection(ll2)
+
+	if got != expected {
+		t.Errorf("LoopDetection error: got %v, expected %v", got, expected)
+	}
 }
