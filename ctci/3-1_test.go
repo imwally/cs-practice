@@ -115,7 +115,8 @@ func (s *Stacks) Pop(which int) int {
 
 	popped := s.Storage[i]
 
-	if s.One < third && s.Two < third && s.Three < third {
+	shrunkThird := (s.Capacity / 3) / 3
+	if s.One < shrunkThird && s.Two < shrunkThird && s.Three < shrunkThird {
 		s.Shrink()
 	}
 
@@ -181,5 +182,16 @@ func TestPush(t *testing.T) {
 	fmt.Println(stacks.Storage)
 
 	fmt.Println(stacks.Pop(3))
+	fmt.Println(stacks.Storage)
+
+	fmt.Println(stacks.Pop(1))
+	fmt.Println(stacks.Storage)
+	fmt.Println(stacks.Pop(1))
+	fmt.Println(stacks.Storage)
+	fmt.Println(stacks.Pop(1))
+	fmt.Println(stacks.Storage)
+	fmt.Println(stacks.Pop(1))
+	fmt.Println(stacks.Storage)
+	fmt.Println(stacks.Pop(1))
 	fmt.Println(stacks.Storage)
 }
