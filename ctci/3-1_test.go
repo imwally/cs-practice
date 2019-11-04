@@ -31,14 +31,40 @@ func New() *Stacks {
 	}
 }
 
+func (s *Stacks) Shrink() {
+	oldThird := s.Capacity / 3
+	s.Capacity = s.Capacity / 2
+	newThird := s.Capacity / 3
+
+	newStorage := make([]int, s.Capacity)
+
+	// Copy first third
+	copy(newStorage[:newThird], s.Storage[:oldThird])
+
+	// Copy middle
+	copy(newStorage[newThird:newThird*2], s.Storage[oldThird:oldThird*2])
+
+	// Copy last third
+	copy(newStorage[newThird*2:], s.Storage[oldThird*2:])
+
+	s.Storage = newStorage
+
+}
+
 func (s *Stacks) Grow() {
 	oldThird := s.Capacity / 3
 	s.Capacity = s.Capacity * 2
 	newThird := s.Capacity / 3
 
 	newStorage := make([]int, s.Capacity)
+
+	// Copy first third
 	copy(newStorage[:newThird], s.Storage[:oldThird])
+
+	// Copy middle
 	copy(newStorage[newThird:newThird*2], s.Storage[oldThird:oldThird*2])
+
+	// Copy last third
 	copy(newStorage[newThird*2:], s.Storage[oldThird*2:])
 
 	s.Storage = newStorage
@@ -73,19 +99,27 @@ func (s *Stacks) Push(which, v int) {
 
 func (s *Stacks) Pop(which int) int {
 	i := 0
+	third := s.Capacity / 3
+
 	switch which {
 	case 1:
 		s.One--
 		i = s.One
 	case 2:
 		s.Two--
-		i = (s.Capacity / 3) + s.Two
+		i = third + s.Two
 	case 3:
 		s.Three--
-		i = (s.Capacity / 3) + (s.Capacity / 3) + s.Three
+		i = (third * 2) + s.Three
 	}
 
-	return s.Storage[i]
+	popped := s.Storage[i]
+
+	if s.One < third && s.Two < third && s.Three < third {
+		s.Shrink()
+	}
+
+	return popped
 }
 
 func TestPush(t *testing.T) {
@@ -137,5 +171,15 @@ func TestPush(t *testing.T) {
 	stacks.Push(1, 9)
 	stacks.Push(1, 10)
 	stacks.Push(1, 11)
+	fmt.Println(stacks.Storage)
+
+	// Test Shrink
+	fmt.Println(stacks.Pop(1))
+	fmt.Println(stacks.Storage)
+
+	fmt.Println(stacks.Pop(2))
+	fmt.Println(stacks.Storage)
+
+	fmt.Println(stacks.Pop(3))
 	fmt.Println(stacks.Storage)
 }
