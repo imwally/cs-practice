@@ -6,7 +6,10 @@
 
 package main
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 type Stacks struct {
 	Storage  []int
@@ -28,17 +31,40 @@ func New() *Stacks {
 	}
 }
 
+func (s *Stacks) Grow() {
+	oldThird := s.Capacity / 3
+	s.Capacity = s.Capacity * 2
+	newThird := s.Capacity / 3
+
+	newStorage := make([]int, s.Capacity)
+	copy(newStorage[:newThird], s.Storage[:oldThird])
+	copy(newStorage[newThird:newThird*2], s.Storage[oldThird:oldThird*2])
+	copy(newStorage[newThird*2:], s.Storage[oldThird*2:])
+
+	s.Storage = newStorage
+}
+
 func (s *Stacks) Push(which, v int) {
 	i := 0
+	third := (s.Capacity / 3)
 	switch which {
 	case 1:
 		i = s.One
+		if i == third {
+			s.Grow()
+		}
 		s.One++
 	case 2:
-		i = (s.Capacity / 3) + s.Two
+		i = third + s.Two
+		if i == third*2 {
+			s.Grow()
+		}
 		s.Two++
 	case 3:
-		i = (s.Capacity / 3) + (s.Capacity / 3) + s.Three
+		i = third*2 + s.Three
+		if i == s.Capacity {
+			s.Grow()
+		}
 		s.Three++
 	}
 
@@ -63,7 +89,6 @@ func (s *Stacks) Pop(which int) int {
 }
 
 func TestPush(t *testing.T) {
-
 	stacks := New()
 
 	// Testing Stack 1
@@ -79,11 +104,11 @@ func TestPush(t *testing.T) {
 	}
 
 	// Testing Stack 2
-	stacks.Push(2, 10)
 	stacks.Push(2, 11)
 	stacks.Push(2, 12)
+	stacks.Push(2, 13)
 
-	expected = 12
+	expected = 13
 	got = stacks.Pop(2)
 
 	if got != expected {
@@ -102,4 +127,15 @@ func TestPush(t *testing.T) {
 		t.Errorf("Pop error: got %v, expected %v", got, expected)
 	}
 
+	// Test Grow
+	stacks.Push(1, 3)
+	stacks.Push(1, 4)
+	stacks.Push(1, 5)
+	stacks.Push(1, 6)
+	stacks.Push(1, 7)
+	stacks.Push(1, 8)
+	stacks.Push(1, 9)
+	stacks.Push(1, 10)
+	stacks.Push(1, 11)
+	fmt.Println(stacks.Storage)
 }
