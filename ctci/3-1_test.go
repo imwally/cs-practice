@@ -120,6 +120,20 @@ func (s *Stacks) Pop(which int) int {
 	return popped
 }
 
+func (s *Stacks) Size(which int) int {
+	i := 0
+	switch which {
+	case 1:
+		i = s.One - 1
+	case 2:
+		i = s.Two - 1
+	case 3:
+		i = s.Three - 1
+	}
+
+	return i
+}
+
 func TestPush(t *testing.T) {
 	stacks := New()
 
@@ -161,4 +175,48 @@ func TestPush(t *testing.T) {
 			t.Errorf("Pop error: got %v, expected %v", got, expected)
 		}
 	}
+}
+
+func TestPop(t *testing.T) {
+	stacks := New()
+
+	stacks.Push(1, 1)
+	stacks.Push(1, 2)
+	stacks.Push(1, 3)
+	stacks.Push(1, 4)
+	for i := 4; stacks.Size(1) > 0; i-- {
+		expected := i
+		got := stacks.Pop(1)
+
+		if got != expected {
+			t.Errorf("Pop error: got %v, expected %v", got, expected)
+		}
+	}
+
+	stacks.Push(2, 5)
+	stacks.Push(2, 6)
+	stacks.Push(2, 7)
+	stacks.Push(2, 8)
+	for i := 8; stacks.Size(2) > 0; i-- {
+		expected := i
+		got := stacks.Pop(2)
+
+		if got != expected {
+			t.Errorf("Pop error: got %v, expected %v", got, expected)
+		}
+	}
+
+	stacks.Push(1, 9)
+	stacks.Push(1, 10)
+	stacks.Push(1, 11)
+	stacks.Push(1, 12)
+	for i := 12; stacks.Size(3) > 0; i-- {
+		expected := i
+		got := stacks.Pop(3)
+
+		if got != expected {
+			t.Errorf("Pop error: got %v, expected %v", got, expected)
+		}
+	}
+
 }
