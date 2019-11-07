@@ -124,11 +124,11 @@ func (s *Stacks) Size(which int) int {
 	i := 0
 	switch which {
 	case 1:
-		i = s.One - 1
+		i = s.One
 	case 2:
-		i = s.Two - 1
+		i = s.Two
 	case 3:
-		i = s.Three - 1
+		i = s.Three
 	}
 
 	return i
@@ -219,4 +219,19 @@ func TestPop(t *testing.T) {
 		}
 	}
 
+}
+
+func TestSize(t *testing.T) {
+	stacks := New()
+
+	for i := 1; i < 5; i++ {
+		stacks.Push(1, i)
+	}
+
+	expected := 4
+	got := stacks.Size(1)
+
+	if got != expected {
+		t.Errorf("Size error: got %v, expected %v", got, expected)
+	}
 }
