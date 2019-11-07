@@ -6,11 +6,14 @@
 
 package main
 
-import "testing"
+import (
+	"testing"
+)
 
 type Stacks struct {
 	Storage  []int
 	Capacity int
+	Third    int
 	One      int
 	Two      int
 	Three    int
@@ -18,10 +21,12 @@ type Stacks struct {
 
 func New() *Stacks {
 	cap := 30
+	third := cap / 3
 	storage := make([]int, cap)
 	return &Stacks{
 		Storage:  storage,
 		Capacity: cap,
+		Third:    third,
 		One:      0,
 		Two:      0,
 		Three:    0,
@@ -29,42 +34,41 @@ func New() *Stacks {
 }
 
 func (s *Stacks) Shrink() {
-	oldThird := s.Capacity / 3
 	s.Capacity = s.Capacity / 2
 	newThird := s.Capacity / 3
 
 	newStorage := make([]int, s.Capacity)
 
 	// Copy first third
-	copy(newStorage[:newThird], s.Storage[:oldThird])
+	copy(newStorage[:newThird], s.Storage[:s.Third])
 
 	// Copy middle
-	copy(newStorage[newThird:newThird*2], s.Storage[oldThird:oldThird*2])
+	copy(newStorage[newThird:newThird*2], s.Storage[s.Third:s.Third*2])
 
 	// Copy last third
-	copy(newStorage[newThird*2:], s.Storage[oldThird*2:])
+	copy(newStorage[newThird*2:], s.Storage[s.Third*2:])
 
 	s.Storage = newStorage
-
+	s.Third = newThird
 }
 
 func (s *Stacks) Grow() {
-	oldThird := s.Capacity / 3
 	s.Capacity = s.Capacity * 2
 	newThird := s.Capacity / 3
 
 	newStorage := make([]int, s.Capacity)
 
 	// Copy first third
-	copy(newStorage[:newThird], s.Storage[:oldThird])
+	copy(newStorage[:newThird], s.Storage[:s.Third])
 
 	// Copy middle
-	copy(newStorage[newThird:newThird*2], s.Storage[oldThird:oldThird*2])
+	copy(newStorage[newThird:newThird*2], s.Storage[s.Third:s.Third*2])
 
 	// Copy last third
-	copy(newStorage[newThird*2:], s.Storage[oldThird*2:])
+	copy(newStorage[newThird*2:], s.Storage[s.Third*2:])
 
 	s.Storage = newStorage
+	s.Third = newThird
 }
 
 func (s *Stacks) Push(which, v int) {
@@ -81,12 +85,14 @@ func (s *Stacks) Push(which, v int) {
 		i = third + s.Two
 		if i == third*2 {
 			s.Grow()
+			i = s.Third + s.Two
 		}
 		s.Two++
 	case 3:
 		i = third*2 + s.Three
 		if i == s.Capacity {
 			s.Grow()
+			i = s.Third*2 + s.Three
 		}
 		s.Three++
 	}
@@ -112,7 +118,7 @@ func (s *Stacks) Pop(which int) int {
 
 	popped := s.Storage[i]
 
-	shrunkThird := (s.Capacity / 3) / 3
+	shrunkThird := (s.Capacity / 2) / 3
 	if s.One < shrunkThird && s.Two < shrunkThird && s.Three < shrunkThird {
 		s.Shrink()
 	}
@@ -206,10 +212,10 @@ func TestPop(t *testing.T) {
 		}
 	}
 
-	stacks.Push(1, 9)
-	stacks.Push(1, 10)
-	stacks.Push(1, 11)
-	stacks.Push(1, 12)
+	stacks.Push(3, 9)
+	stacks.Push(3, 10)
+	stacks.Push(3, 11)
+	stacks.Push(3, 12)
 	for i := 12; stacks.Size(3) > 0; i-- {
 		expected := i
 		got := stacks.Pop(3)
