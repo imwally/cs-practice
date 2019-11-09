@@ -35,8 +35,8 @@ func (s *Stack) Push(v int) {
 }
 
 func (s *Stack) Pop() int {
-	popped := s.Storage[s.Index]
 	s.Index--
+	popped := s.Storage[s.Index]
 
 	return popped
 }
@@ -64,6 +64,20 @@ func TestMin(t *testing.T) {
 
 	expected = 5
 	got = s.Min()
+
+	if got != expected {
+		t.Errorf("Min error: got %v, expected %v", got, expected)
+	}
+
+	expected = 5
+	got = s.Pop()
+
+	if got != expected {
+		t.Errorf("Min error: got %v, expected %v", got, expected)
+	}
+
+	expected = 10
+	got = s.Pop()
 
 	if got != expected {
 		t.Errorf("Min error: got %v, expected %v", got, expected)
