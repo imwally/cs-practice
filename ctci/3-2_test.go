@@ -60,4 +60,12 @@ func TestMin(t *testing.T) {
 		t.Errorf("Min error: got %v, expected %v", got, expected)
 	}
 
+	s.Push(5)
+
+	expected = 5
+	got = s.Min()
+
+	if got != expected {
+		t.Errorf("Min error: got %v, expected %v", got, expected)
+	}
 }
