@@ -11,23 +11,26 @@ package main
 import "testing"
 
 type Stack struct {
-	Storage  []int
-	MinIndex int
-	Index    int
+	Storage    []int
+	MinStorage []int
+	Index      int
 }
 
 func New() *Stack {
 	storage := make([]int, 10)
 	return &Stack{
-		Storage:  storage,
-		MinIndex: 0,
-		Index:    0,
+		Storage: storage,
+		Index:   0,
 	}
 }
 
 func (s *Stack) Push(v int) {
-	if v < s.Storage[s.MinIndex] {
-		s.MinIndex = s.Index
+	if len(s.MinStorage) == 0 {
+		s.MinStorage = append(s.MinStorage, v)
+	} else {
+		if v < s.MinStorage[len(s.MinStorage)-1] {
+			s.MinStorage = append(s.MinStorage, v)
+		}
 	}
 
 	s.Storage[s.Index] = v
@@ -39,11 +42,15 @@ func (s *Stack) Pop() int {
 	s.Index--
 	popped := s.Storage[s.Index]
 
+	if popped == s.Min() {
+		s.MinStorage = append(s.MinStorage[:len(s.MinStorage)-1], s.MinStorage[len(s.MinStorage):]...)
+	}
+
 	return popped
 }
 
 func (s *Stack) Min() int {
-	return s.Storage[s.MinIndex]
+	return s.MinStorage[len(s.MinStorage)-1]
 }
 
 func TestMin(t *testing.T) {
@@ -78,9 +85,24 @@ func TestMin(t *testing.T) {
 	}
 
 	expected = 10
+	got = s.Min()
+
+	if got != expected {
+		t.Errorf("Min error: got %v, expected %v", got, expected)
+	}
+
+	expected = 10
 	got = s.Pop()
 
 	if got != expected {
 		t.Errorf("Min error: got %v, expected %v", got, expected)
 	}
+
+	expected = 20
+	got = s.Min()
+
+	if got != expected {
+		t.Errorf("Min error: got %v, expected %v", got, expected)
+	}
+
 }
