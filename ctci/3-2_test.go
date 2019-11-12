@@ -40,11 +40,22 @@ func (s *Stack) Push(v int) {
 	if s.Size() == 0 {
 		n.Min = 0
 	} else {
+		// Get the last node and
 		lastNode := s.Storage[s.Size()-1]
+		// Last node's Min holds the index of the minimum value seen so
+		// far. Therefore the node at that index will have the minimum
+		// value seen.
 		minValue := s.Storage[lastNode.Min].Value
+
+		// If the currently added value is less that the minimum seen
+		// so far, it's Min value will be the current index, as in it
+		// points to itself.
 		if v < minValue.(int) {
 			n.Min = s.Index
 		} else {
+			// Otherwise it's Min value will be the minimum seen so
+			// far, which is located in last node's Min. This gets
+			// copied over.
 			n.Min = lastNode.Min
 		}
 	}
