@@ -130,4 +130,32 @@ func TestMin(t *testing.T) {
 		t.Errorf("Min error: got %v, expected %v", got, expected)
 	}
 
+	expected = 50
+	got = s.Pop()
+
+	if got != expected {
+		t.Errorf("Min error: got %v, expected %v", got, expected)
+	}
+
+	expected = 20
+	got = s.Min()
+
+	if got != expected {
+		t.Errorf("Min error: got %v, expected %v", got, expected)
+	}
+
+	expected = 20
+	got = s.Pop()
+
+	if got != expected {
+		t.Errorf("Min error: got %v, expected %v", got, expected)
+	}
+
+	expected = 30
+	got = s.Min()
+
+	if got != expected {
+		t.Errorf("Min error: got %v, expected %v", got, expected)
+	}
+
 }
