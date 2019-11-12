@@ -37,7 +37,7 @@ func (s *Stack) Push(v int) {
 	s.Index++
 }
 
-// Need to figure out how to find the next minimum value after popping.
+// Technically using append() doesn't run in O(1) time.
 func (s *Stack) Pop() int {
 	s.Index--
 	popped := s.Storage[s.Index]
