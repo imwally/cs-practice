@@ -10,47 +10,61 @@ package main
 
 import "testing"
 
+type Node struct {
+	Value interface{}
+	Min   int
+}
+
 type Stack struct {
-	Storage    []int
-	MinStorage []int
-	Index      int
+	Storage []Node
+	Index   int
 }
 
 func New() *Stack {
-	storage := make([]int, 10)
+	storage := make([]Node, 10)
 	return &Stack{
 		Storage: storage,
 		Index:   0,
 	}
 }
 
+func (s *Stack) Size() int {
+	return s.Index
+}
+
 func (s *Stack) Push(v int) {
-	if len(s.MinStorage) == 0 {
-		s.MinStorage = append(s.MinStorage, v)
+
+	var n Node
+	n.Value = v
+
+	if s.Size() == 0 {
+		n.Min = 0
 	} else {
-		if v < s.MinStorage[len(s.MinStorage)-1] {
-			s.MinStorage = append(s.MinStorage, v)
+		lastNode := s.Storage[s.Size()-1]
+		minValue := s.Storage[lastNode.Min].Value
+		if v < minValue.(int) {
+			n.Min = s.Index
+		} else {
+			n.Min = lastNode.Min
 		}
 	}
 
-	s.Storage[s.Index] = v
+	s.Storage[s.Index] = n
 	s.Index++
 }
 
-// Technically using append() doesn't run in O(1) time.
 func (s *Stack) Pop() int {
 	s.Index--
 	popped := s.Storage[s.Index]
 
-	if popped == s.Min() {
-		s.MinStorage = append(s.MinStorage[:len(s.MinStorage)-1], s.MinStorage[len(s.MinStorage):]...)
-	}
-
-	return popped
+	return popped.Value.(int)
 }
 
 func (s *Stack) Min() int {
-	return s.MinStorage[len(s.MinStorage)-1]
+	lastNode := s.Storage[s.Index-1]
+	minValue := s.Storage[lastNode.Min].Value
+
+	return minValue.(int)
 }
 
 func TestMin(t *testing.T) {
