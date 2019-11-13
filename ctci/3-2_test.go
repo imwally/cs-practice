@@ -32,8 +32,8 @@ func (s *Stack) Size() int {
 	return s.Index
 }
 
+// Doesn't resize
 func (s *Stack) Push(v int) {
-
 	var n Node
 	n.Value = v
 
@@ -64,6 +64,7 @@ func (s *Stack) Push(v int) {
 	s.Index++
 }
 
+// Doesn't check for stack underflow
 func (s *Stack) Pop() int {
 	s.Index--
 	popped := s.Storage[s.Index]
