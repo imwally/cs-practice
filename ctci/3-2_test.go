@@ -1,4 +1,4 @@
-// Exercose 3.2
+// Exercise 3.2
 //
 // Stack Min
 //
