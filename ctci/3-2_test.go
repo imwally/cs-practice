@@ -42,6 +42,7 @@ func (s *Stack) Push(v int) {
 	} else {
 		// Get the last node and
 		lastNode := s.Storage[s.Size()-1]
+
 		// Last node's Min holds the index of the minimum value seen so
 		// far. Therefore the node at that index will have the minimum
 		// value seen.
