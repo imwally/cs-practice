@@ -8,7 +8,9 @@
 
 package main
 
-import "testing"
+import (
+	"testing"
+)
 
 type Node struct {
 	Value interface{}
@@ -65,8 +67,11 @@ func (s *Stack) Push(v int) {
 	s.Index++
 }
 
-// Doesn't check for stack underflow
 func (s *Stack) Pop() int {
+	if s.Size() < 0 {
+		panic("stack underflow")
+	}
+
 	s.Index--
 	popped := s.Storage[s.Index]
 
@@ -159,5 +164,21 @@ func TestMin(t *testing.T) {
 	if got != expected {
 		t.Errorf("Min error: got %v, expected %v", got, expected)
 	}
+}
 
+func TestStackUnderflow(t *testing.T) {
+	defer func() {
+		if r := recover(); r == nil {
+			t.Errorf("Pop error: no stack underflow panic")
+		}
+	}()
+
+	s := New()
+	s.Push(1)
+	s.Push(2)
+
+	s.Pop()
+	s.Pop()
+
+	s.Pop()
 }
