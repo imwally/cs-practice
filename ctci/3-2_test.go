@@ -177,6 +177,13 @@ func TestStackUnderflow(t *testing.T) {
 	s.Push(1)
 	s.Push(2)
 
+	expected := 1
+	got := s.Min()
+
+	if got != expected {
+		t.Errorf("Min error: got %v, expected %v", got, expected)
+	}
+
 	s.Pop()
 	s.Pop()
 
