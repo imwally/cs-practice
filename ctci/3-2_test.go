@@ -187,5 +187,6 @@ func TestStackUnderflow(t *testing.T) {
 	s.Pop()
 	s.Pop()
 
+	// Cause panic
 	s.Pop()
 }
