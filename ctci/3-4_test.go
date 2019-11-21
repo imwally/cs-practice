@@ -18,6 +18,10 @@ type Queue struct {
 }
 
 func (q *Queue) Enqueue(v int) {
+	for q.OutStack.Size() > 0 {
+		q.InStack.Push(q.OutStack.Pop())
+	}
+
 	q.InStack.Push(v)
 }
 
@@ -27,10 +31,6 @@ func (q *Queue) Dequeue() int {
 	}
 
 	v := q.OutStack.Pop()
-
-	for q.OutStack.Size() > 0 {
-		q.InStack.Push(q.OutStack.Pop())
-	}
 
 	return v
 }
