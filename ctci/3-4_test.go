@@ -7,7 +7,6 @@
 package main
 
 import (
-	"fmt"
 	"testing"
 
 	"../data-structures/stack"
@@ -39,13 +38,16 @@ func (q *Queue) Dequeue() int {
 func TestQueueFromStacks(t *testing.T) {
 	q := &Queue{}
 
-	q.Enqueue(1)
-	q.Enqueue(2)
-	q.Enqueue(3)
-	q.Enqueue(4)
+	for i := 1; i < 11; i++ {
+		q.Enqueue(i)
+	}
 
-	fmt.Println(q.Dequeue())
-	fmt.Println(q.Dequeue())
-	fmt.Println(q.Dequeue())
-	fmt.Println(q.Dequeue())
+	for i := 1; i < 11; i++ {
+		expected := i
+		got := q.Dequeue()
+
+		if got != expected {
+			t.Errorf("error: got %v, expected %v", got, expected)
+		}
+	}
 }
