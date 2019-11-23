@@ -71,6 +71,9 @@ func TestQueueFromStacks(t *testing.T) {
 		t.Errorf("error: got %v, expected %v", got, expected)
 	}
 
+	q.Enqueue(15)
+	q.Enqueue(16)
+
 	expected = 13
 	got = q.Dequeue()
 
@@ -78,9 +81,17 @@ func TestQueueFromStacks(t *testing.T) {
 		t.Errorf("error: got %v, expected %v", got, expected)
 	}
 
-	q.Enqueue(15)
+	q.Enqueue(17)
+	q.Enqueue(18)
 
 	expected = 14
+	got = q.Dequeue()
+
+	if got != expected {
+		t.Errorf("error: got %v, expected %v", got, expected)
+	}
+
+	expected = 15
 	got = q.Dequeue()
 
 	if got != expected {
