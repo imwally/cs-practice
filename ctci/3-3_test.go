@@ -29,7 +29,7 @@ func (s *SetOfStacks) Push(v int) {
 
 	if currentStack.Size() == 10 {
 		s.Index++
-		s.Stacks[s.Index] = &stack.Stack{}
+		s.Stacks = append(s.Stacks, &stack.Stack{})
 		currentStack = s.Stacks[s.Index]
 	}
 
@@ -45,8 +45,8 @@ func (s *SetOfStacks) Pop() int {
 }
 
 func New() *SetOfStacks {
-	stacks := make([]*stack.Stack, 10)
-	stacks[0] = &stack.Stack{}
+	var stacks []*stack.Stack
+	stacks = append(stacks, &stack.Stack{})
 	return &SetOfStacks{
 		stacks,
 		0,
