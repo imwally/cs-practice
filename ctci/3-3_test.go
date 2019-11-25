@@ -56,11 +56,11 @@ func New() *SetOfStacks {
 func TestSetOfStacks(t *testing.T) {
 	s := New()
 
-	for i := 1; i < 101; i++ {
+	for i := 1; i < 1001; i++ {
 		s.Push(i)
 	}
 
-	for j := 100; j > 0; j-- {
+	for j := 1000; j > 0; j-- {
 		expected := j
 		got := s.Pop()
 
