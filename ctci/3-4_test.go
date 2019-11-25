@@ -36,6 +36,12 @@ func (q *Queue) Dequeue() int {
 }
 
 func TestQueueFromStacks(t *testing.T) {
+	defer func() {
+		if r := recover(); r == nil {
+			t.Errorf("expected stack underflow")
+		}
+	}()
+
 	q := &Queue{}
 
 	for i := 1; i < 11; i++ {
@@ -97,4 +103,27 @@ func TestQueueFromStacks(t *testing.T) {
 	if got != expected {
 		t.Errorf("error: got %v, expected %v", got, expected)
 	}
+
+	expected = 16
+	got = q.Dequeue()
+
+	if got != expected {
+		t.Errorf("error: got %v, expected %v", got, expected)
+	}
+
+	expected = 17
+	got = q.Dequeue()
+
+	if got != expected {
+		t.Errorf("error: got %v, expected %v", got, expected)
+	}
+
+	expected = 18
+	got = q.Dequeue()
+
+	if got != expected {
+		t.Errorf("error: got %v, expected %v", got, expected)
+	}
+
+	q.Dequeue()
 }
