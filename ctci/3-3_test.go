@@ -68,4 +68,12 @@ func TestSetOfStacks(t *testing.T) {
 			t.Errorf("error: got %v, expected %v", got, expected)
 		}
 	}
+
+	expected := 100
+	got := len(s.Stacks)
+
+	if got != expected {
+		t.Errorf("error: got %v, expected %v", got, expected)
+	}
+
 }
