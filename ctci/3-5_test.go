@@ -10,7 +10,6 @@
 package main
 
 import (
-	"fmt"
 	"testing"
 
 	"../data-structures/stack"
@@ -53,10 +52,7 @@ func TestSortStack(t *testing.T) {
 		s.Push(i)
 	}
 
-	fmt.Println(s)
 	s = SortStack(s)
-	fmt.Println(s)
-
 	for i := 1; i < 101; i++ {
 		expected := i
 		got := s.Pop()
