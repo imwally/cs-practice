@@ -17,25 +17,23 @@ import (
 
 // Uses two additional stacks...
 func SortStack(s *stack.Stack) *stack.Stack {
-	temp := &stack.Stack{}
 	sorted := &stack.Stack{}
-
 	origSize := s.Size()
-	for sorted.Size() < origSize {
+	for i := 0; i < origSize; i++ {
 		max := 0
 		for s.Size() > 0 {
 			if s.Peek() > max {
 				max = s.Peek()
 			}
-			temp.Push(s.Pop())
+			sorted.Push(s.Pop())
 
 		}
 
-		for temp.Size() > 0 {
-			if temp.Peek() == max {
-				temp.Pop()
+		for j := 0; j < origSize-i; j++ {
+			if sorted.Peek() == max {
+				sorted.Pop()
 			} else {
-				s.Push(temp.Pop())
+				s.Push(sorted.Pop())
 			}
 		}
 
