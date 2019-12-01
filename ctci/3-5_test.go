@@ -45,13 +45,12 @@ func SortStack(s *stack.Stack) *stack.Stack {
 
 func TestSortStack(t *testing.T) {
 	s := &stack.Stack{}
-
-	for i := 1; i < 101; i++ {
+	for i := 1; i < 1001; i++ {
 		s.Push(i)
 	}
 
 	s = SortStack(s)
-	for i := 1; i < 101; i++ {
+	for i := 1; i < 1001; i++ {
 		expected := i
 		got := s.Pop()
 
