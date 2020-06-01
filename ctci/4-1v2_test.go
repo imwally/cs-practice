@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"testing"
 
 	"../data-structures/graph"
@@ -38,7 +37,7 @@ func RouteExists(n1, n2 *graph.Node, visited []*graph.Node) bool {
 	return false
 }
 
-func TestGraph(t *testing.T) {
+func TestRouteExists(t *testing.T) {
 	g := new(graph.Graph)
 
 	n0 := g.AddNode(0)
@@ -58,5 +57,13 @@ func TestGraph(t *testing.T) {
 	n5.AddChild(n6, 1)
 
 	var visited []*graph.Node
-	fmt.Println(RouteExists(n0, n6, visited))
+	got, expected := RouteExists(n0, n6, visited), true
+	if got != expected {
+		t.Errorf("error: got %v, expected %v", got, expected)
+	}
+
+	got, expected = RouteExists(n6, n0, visited), false
+	if got != expected {
+		t.Errorf("error: got %v, expected %v", got, expected)
+	}
 }
