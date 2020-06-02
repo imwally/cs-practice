@@ -19,6 +19,23 @@ func MinimalBST(s []int, left int, right int) *Node {
 		return nil
 	}
 
+	// Why use
+	//
+	// left + (right-left)/2
+	// vs.
+	// (left+right)/2
+	//
+	// Because the first version never grows larger than the size
+	// of the input. This could eventually lead to overflows given
+	// a very large input size.
+	//
+	// Ex with input size of 65535 and last recursive call:
+	//
+	// 65534 + (65534-65534)
+	// left + (right-left) = 65534 / 2 = 65534
+	// vs.
+	// (65534+65534)
+	// (left+right) = 131068 / 2 = 65534
 	mid := left + (right-left)/2
 
 	current := &Node{s[mid], nil, nil}
@@ -50,7 +67,10 @@ func TreeHeight(current *Node) int {
 
 func TestMinimaBST(t *testing.T) {
 
-	s := []int{1, 2, 3}
+	var s []int
+	for i := 1; i <= 3; i++ {
+		s = append(s, i)
+	}
 
 	tree := new(BST)
 	tree.Root = MinimalBST(s, 0, len(s)-1)
@@ -60,8 +80,10 @@ func TestMinimaBST(t *testing.T) {
 		t.Errorf("error: got %v, expected %v", got, expected)
 	}
 
-	s = []int{1, 2, 3, 4, 5, 6, 7, 8}
-
+	s = []int{}
+	for i := 1; i <= 8; i++ {
+		s = append(s, i)
+	}
 	tree = new(BST)
 	tree.Root = MinimalBST(s, 0, len(s)-1)
 
