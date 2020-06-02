@@ -15,7 +15,6 @@ type BST struct {
 }
 
 func MinimalBST(s []int, left int, right int) *Node {
-
 	if left > right {
 		return nil
 	}
@@ -23,6 +22,7 @@ func MinimalBST(s []int, left int, right int) *Node {
 	mid := left + (right-left)/2
 
 	current := &Node{s[mid], nil, nil}
+
 	current.Left = MinimalBST(s, left, mid-1)
 	current.Right = MinimalBST(s, mid+1, right)
 
