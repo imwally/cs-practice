@@ -65,7 +65,7 @@ func TreeHeight(current *Node) int {
 	return deeper
 }
 
-func TestMinimaBST(t *testing.T) {
+func TestMinimalBST(t *testing.T) {
 
 	var s []int
 	for i := 1; i <= 3; i++ {
