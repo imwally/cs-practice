@@ -71,7 +71,7 @@ func (g *Game) State() int {
 	}
 
 	for x, row := range g.Board {
-		for y, _ := range row {
+		for y := range row {
 			if g.Board[x][y] != PlayerX && g.Board[x][y] != PlayerO {
 				return StateOpen
 			}
@@ -140,29 +140,49 @@ func min(a, b int) int {
 }
 
 func (g *Game) MiniMax(depth int, isMax bool) int {
+
+	// First check the state of the board.
 	switch g.State() {
+
+	// O is the computer, therefore we want to maximize its wins.
 	case StateWonO:
 		return 10
+
+	// X is the human player, minimize wins.
 	case StateWonX:
 		return -10
+
+	// No one wins, return a score of 0.
 	case StateDraw:
 		return 0
 	}
 
+	// Start with a low score for the maximizing player that can
+	// increase with each win.
 	best, player := -999, PlayerO
 	if !isMax {
+		// Inverse for the minimizing player.
 		best, player = 999, PlayerX
 	}
 
 	for x := range g.Board {
 		for y := range g.Board[x] {
 			if g.Board[x][y] == 0 {
+				// Play spot for each open board cell.
 				g.Board[x][y] = player
 				if isMax {
+					// NOTE: Inverse isMax on each
+					// recursive call with !isMax
+					// which swaps player.
+					//
+					// Maximize score for computer player.
 					best = max(best, g.MiniMax(depth+1, !isMax))
 				} else {
+					// Minimize score for human player.
 					best = min(best, g.MiniMax(depth+1, !isMax))
 				}
+
+				// Reset board cell.
 				g.Board[x][y] = 0
 			}
 		}
@@ -171,19 +191,37 @@ func (g *Game) MiniMax(depth int, isMax bool) int {
 	return best
 }
 
+// BestMove calculates the best spot to player for the computer,
+// player O.
 func (g *Game) BestMove() int {
+	// Start with lower score to increase.
 	bestScore := -999
 	bestMove := 0
 
+	// Cell counter.
+	// 1 2 3
+	// 4 5 6
+	// 7 8 9
 	i := 1
+
 	for x := range g.Board {
 		for y := range g.Board[x] {
 			if g.Board[x][y] == 0 {
+
+				// Try spot X,Y for computer player.
 				g.Board[x][y] = PlayerO
+
+				// Start calculating score starting
+				// with the inverse player (false)
+				// since computer took its first move
+				// above.
 				currentScore := g.MiniMax(0, false)
 
+				// Reset board cell.
 				g.Board[x][y] = 0
 
+				// Store best score and move if better
+				// one is found.
 				if currentScore > bestScore {
 					bestScore = currentScore
 					bestMove = i
