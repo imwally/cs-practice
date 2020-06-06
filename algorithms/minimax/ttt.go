@@ -6,13 +6,13 @@ import (
 )
 
 const (
-	X int = 1
-	O int = -1
+	PlayerX int = 1
+	PlayerO int = -1
 
-	STATEX    = 2
-	STATEO    = 3
-	STATEDRAW = 4
-	STATEOPEN = 5
+	StateWonX = 2
+	StateWonO = 3
+	StateDraw = 4
+	StateOpen = 5
 )
 
 type Game struct {
@@ -26,9 +26,9 @@ func (g *Game) String() string {
 	for x, row := range g.Board {
 		for y, _ := range row {
 			switch g.Board[x][y] {
-			case X:
+			case PlayerX:
 				s += fmt.Sprintf("X ")
-			case O:
+			case PlayerO:
 				s += fmt.Sprintf("O ")
 			default:
 				s += fmt.Sprintf("%d ", spot)
@@ -62,23 +62,23 @@ func (g *Game) Play(player int, spot int) error {
 }
 
 func (g *Game) State() int {
-	if g.Won(O) {
-		return STATEO
+	if g.Won(PlayerO) {
+		return StateWonO
 	}
 
-	if g.Won(X) {
-		return STATEX
+	if g.Won(PlayerX) {
+		return StateWonX
 	}
 
 	for x, row := range g.Board {
 		for y, _ := range row {
-			if g.Board[x][y] != X && g.Board[x][y] != O {
-				return STATEOPEN
+			if g.Board[x][y] != PlayerX && g.Board[x][y] != PlayerO {
+				return StateOpen
 			}
 		}
 	}
 
-	return STATEDRAW
+	return StateDraw
 }
 
 func (g *Game) Won(player int) bool {
@@ -141,17 +141,17 @@ func min(a, b int) int {
 
 func (g *Game) MiniMax(depth int, isMax bool) int {
 	switch g.State() {
-	case STATEO:
+	case StateWonO:
 		return 10
-	case STATEX:
+	case StateWonX:
 		return -10
-	case STATEDRAW:
+	case StateDraw:
 		return 0
 	}
 
-	best, player := -999, O
+	best, player := -999, PlayerO
 	if !isMax {
-		best, player = 999, X
+		best, player = 999, PlayerX
 	}
 
 	for x := range g.Board {
@@ -179,7 +179,7 @@ func (g *Game) BestMove() int {
 	for x := range g.Board {
 		for y := range g.Board[x] {
 			if g.Board[x][y] == 0 {
-				g.Board[x][y] = O
+				g.Board[x][y] = PlayerO
 				currentScore := g.MiniMax(0, false)
 
 				g.Board[x][y] = 0
@@ -199,37 +199,34 @@ func (g *Game) BestMove() int {
 func main() {
 	g := new(Game)
 
-	for g.State() == STATEOPEN {
+	for g.State() == StateOpen {
 		fmt.Println(g)
 		var spot int
 		fmt.Printf("Spot: ")
 		fmt.Scan(&spot)
 		fmt.Println()
 
-		err := g.Play(X, spot)
+		err := g.Play(PlayerX, spot)
 		if err != nil {
 			fmt.Println(err)
 			fmt.Println()
 		}
 
-		if g.State() == STATEX {
+		if g.State() == StateWonX {
 			fmt.Println(g)
 			fmt.Println("X won!")
 			return
 		}
 
-		g.Play(O, g.BestMove())
-		if g.State() == STATEO {
+		g.Play(PlayerO, g.BestMove())
+		if g.State() == StateWonO {
 			fmt.Println(g)
 			fmt.Println("O won!")
 			return
 		}
 
-		if g.State() == STATEDRAW {
+		if g.State() == StateDraw {
 			fmt.Println("Draw!")
 		}
 	}
-
-	fmt.Println(g)
-	fmt.Println("Draw!")
 }
