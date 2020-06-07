@@ -191,7 +191,7 @@ func (g *Game) MiniMax(depth int, isMax bool) int {
 	return best
 }
 
-// BestMove calculates the best spot to player for the computer,
+// BestMove calculates the best spot to play for the computer,
 // player O.
 func (g *Game) BestMove() int {
 	// Start with lower score to increase.
