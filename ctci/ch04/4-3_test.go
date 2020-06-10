@@ -66,7 +66,7 @@ func DepthLinkedList(current *Node) []*linkedlist.LinkedList {
 			}
 
 			// Decrement counter after processing node
-			nodesAtDepth -= 1
+			nodesAtDepth--
 		}
 
 		// All nodes have been processed at depth, add to llSlice
