@@ -15,7 +15,7 @@ import (
 	"fmt"
 	"testing"
 
-	"../data-structures/linkedlist"
+	"../../data-structures/linkedlist"
 )
 
 func RemoveMiddleNode(ll *linkedlist.LinkedList, pos int) error {

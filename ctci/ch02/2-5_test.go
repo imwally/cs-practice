@@ -19,8 +19,8 @@ import (
 	"strconv"
 	"testing"
 
-	"../data-structures/linkedlist"
-	"../data-structures/stack"
+	"../../data-structures/linkedlist"
+	"../../data-structures/stack"
 )
 
 func SumList(ll1, ll2 *linkedlist.LinkedList) *linkedlist.LinkedList {

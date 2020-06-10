@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"../data-structures/linkedlist"
+	"../../data-structures/linkedlist"
 )
 
 type Animal struct {

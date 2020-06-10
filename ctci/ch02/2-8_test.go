@@ -3,7 +3,7 @@ package main
 import (
 	"testing"
 
-	"../data-structures/linkedlist"
+	"../../data-structures/linkedlist"
 )
 
 func LoopDetection(ll *linkedlist.LinkedList) *linkedlist.Node {

@@ -7,8 +7,8 @@ package main
 import (
 	"testing"
 
-	"../data-structures/linkedlist"
-	"../data-structures/stack"
+	"../../data-structures/linkedlist"
+	"../../data-structures/stack"
 )
 
 func Palindrome(ll *linkedlist.LinkedList) bool {

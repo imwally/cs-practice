@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"testing"
 
-	"../data-structures/linkedlist"
-	"../data-structures/queue"
+	"../../data-structures/linkedlist"
+	"../../data-structures/queue"
 )
 
 type Node struct {

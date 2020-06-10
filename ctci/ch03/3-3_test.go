@@ -16,7 +16,7 @@ package main
 import (
 	"testing"
 
-	"../data-structures/stack"
+	"../../data-structures/stack"
 )
 
 type SetOfStacks struct {

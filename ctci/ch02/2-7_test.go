@@ -13,7 +13,7 @@ package main
 import (
 	"testing"
 
-	"../data-structures/linkedlist"
+	"../../data-structures/linkedlist"
 )
 
 func Intersection(ll1, ll2 *linkedlist.LinkedList) bool {

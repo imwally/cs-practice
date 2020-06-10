@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"testing"
 
-	"../data-structures/linkedlist"
+	"../../data-structures/linkedlist"
 )
 
 func KthToLast(ll *linkedlist.LinkedList, k int) (int, error) {

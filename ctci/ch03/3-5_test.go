@@ -12,7 +12,7 @@ package main
 import (
 	"testing"
 
-	"../data-structures/stack"
+	"../../data-structures/stack"
 )
 
 // Uses two additional stacks...

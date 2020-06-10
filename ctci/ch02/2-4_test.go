@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"testing"
 
-	"../data-structures/linkedlist"
+	"../../data-structures/linkedlist"
 )
 
 func Partition(ll *linkedlist.LinkedList, v int) *linkedlist.LinkedList {

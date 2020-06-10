@@ -3,7 +3,7 @@ package main
 import (
 	"testing"
 
-	"../data-structures/graph"
+	"../../data-structures/graph"
 )
 
 func in(n *graph.Node, v []*graph.Node) bool {

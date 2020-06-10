@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"testing"
 
-	"../data-structures/linkedlist"
+	"../../data-structures/linkedlist"
 )
 
 func RemoveDups(ll *linkedlist.LinkedList) {

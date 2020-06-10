@@ -3,7 +3,7 @@ package main
 import (
 	"testing"
 
-	"../data-structures/graph"
+	"../../data-structures/graph"
 )
 
 func RouteExists(n1, n2 *graph.Node) bool {
