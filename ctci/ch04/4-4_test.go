@@ -67,4 +67,26 @@ func TestBalanced(t *testing.T) {
 	if got != expected {
 		t.Errorf("error: got %v, expected %v", got, expected)
 	}
+
+	// Try an equal amount of height coming off of the last right node.
+	//
+	//         1
+	//          \
+	//           2
+	//            \
+	//             3
+	//            /
+	//           4
+	//          /
+	//         5
+	//        /
+	//       6
+	tree.Right.Right.Left = &Node{4, nil, nil}
+	tree.Right.Right.Left.Left = &Node{5, nil, nil}
+	tree.Right.Right.Left.Left.Left = &Node{6, nil, nil}
+
+	got, expected = Balanced(tree), false
+	if got != expected {
+		t.Errorf("error: got %v, expected %v", got, expected)
+	}
 }
