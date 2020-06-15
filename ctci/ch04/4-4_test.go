@@ -21,7 +21,6 @@ func Abs(i int) int {
 func height(current *Node) int {
 	if current == nil {
 		return 0
-
 	}
 
 	l := height(current.Left)
