@@ -17,7 +17,7 @@ type Graph struct {
 }
 
 func New() Graph {
-	return Graph
+	return Graph{}
 }
 
 func (n *Node) AddChild(child *Node, distance int) {
@@ -54,4 +54,14 @@ func (g *Graph) AddEdge(n1, n2 *Node, distance int) error {
 	n2.AddChild(n1, distance)
 
 	return nil
+}
+
+func (g *Graph) Adjacent(n1, n2 *Node) bool {
+	for _, edge := range n1.Edges {
+		if edge.Node == n2 {
+			return true
+		}
+	}
+
+	return false
 }
