@@ -16,6 +16,10 @@ type Graph struct {
 	Nodes []*Node
 }
 
+func New() Graph {
+	return Graph
+}
+
 func (n *Node) AddChild(child *Node, distance int) {
 	n.Edges = append(n.Edges, &Edge{child, distance})
 }
