@@ -2,14 +2,9 @@ package graph
 
 import "fmt"
 
-type Edge struct {
-	Node     *Node
-	Distance int
-}
-
 type Node struct {
 	Value interface{}
-	Edges []*Edge
+	Edges map[*Node]int
 }
 
 type Graph struct {
@@ -20,12 +15,22 @@ func New() Graph {
 	return Graph{}
 }
 
+func (n *Node) AddEdge(n2 *Node, distance int) {
+	n.Edges[n2] = distance
+}
+
+func (n *Node) Distance(n2 *Node) int {
+	return n.Edges[n2]
+}
+
+// Backwards compatibility
 func (n *Node) AddChild(child *Node, distance int) {
-	n.Edges = append(n.Edges, &Edge{child, distance})
+	n.AddEdge(child, distance)
 }
 
 func (g *Graph) AddNode(value int) *Node {
-	node := &Node{value, nil}
+	m := make(map[*Node]int)
+	node := &Node{value, m}
 	g.Nodes = append(g.Nodes, node)
 
 	return node
@@ -41,6 +46,12 @@ func (g *Graph) NodeExists(n *Node) bool {
 	return false
 }
 
+func (g *Graph) Adjacent(n1, n2 *Node) bool {
+	_, ok := n1.Edges[n2]
+
+	return ok
+}
+
 func (g *Graph) AddEdge(n1, n2 *Node, distance int) error {
 	if !g.NodeExists(n1) {
 		return fmt.Errorf("node %v does not exists", n1)
@@ -50,18 +61,12 @@ func (g *Graph) AddEdge(n1, n2 *Node, distance int) error {
 		return fmt.Errorf("node %v does not exists", n2)
 	}
 
-	n1.AddChild(n2, distance)
-	n2.AddChild(n1, distance)
-
-	return nil
-}
-
-func (g *Graph) Adjacent(n1, n2 *Node) bool {
-	for _, edge := range n1.Edges {
-		if edge.Node == n2 {
-			return true
-		}
+	if g.Adjacent(n1, n2) {
+		return fmt.Errorf("nodes %v and %v are already adjacent", n1, n2)
 	}
 
-	return false
+	n1.AddEdge(n2, distance)
+	n2.AddEdge(n1, distance)
+
+	return nil
 }
